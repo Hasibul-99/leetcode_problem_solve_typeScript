@@ -1,10 +1,15 @@
-function lengthOfLastWord(s: string): number {
-    let text = s.trim();
-    if (!text) return 0;
 
-    let n = text.split(" ");
-    let lastWorld =  n[n.length - 1];
-    return lastWorld.length;
+class ListNode {
+    val: number
+    next: ListNode | null
+    constructor(val?: number, next?: ListNode | null) {
+        this.val = (val === undefined ? 0 : val)
+        this.next = (next === undefined ? null : next)
+    }
+}
+
+function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
+
 };
 
-console.log("lengthOfLastWord", lengthOfLastWord("Hello World"));
+console.log("removeNthFromEnd", removeNthFromEnd(new ListNode([1, 2, 3, 4, 5]), 2));
