@@ -1,10 +1,6 @@
-function lengthOfLastWord(s) {
-    var text = s.trim();
-    if (!text)
-        return 0;
-    var n = text.split(" ");
-    var lastWorld = n[n.length - 1];
-    return lastWorld.length;
+function mySqrt(x) {
+    var val = Math.sqrt(x);
+    return Math.floor(val);
 }
 ;
-console.log("lengthOfLastWord", lengthOfLastWord("Hello World"));
+console.log("removeNthFromEnd", mySqrt(8));
