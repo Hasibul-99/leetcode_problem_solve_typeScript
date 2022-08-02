@@ -1,10 +1,9 @@
-function maximumWealth(accounts) {
-    var max = 0;
-    accounts.forEach(function (acc) {
-        var amount = acc.reduce(function (total, num) { return total + num; });
-        max = Math.max(max, amount);
+function defangIPaddr(address) {
+    var strArr = address.split("."), newSrt = "";
+    strArr.forEach(function (a) {
+        newSrt = newSrt + "".concat(newSrt == "" ? '' : "[.]") + a;
     });
-    return max;
+    return newSrt;
 }
 ;
-console.log(maximumWealth([[1, 2, 3], [3, 2, 1]]));
+console.log('defangIPaddr', defangIPaddr("255.100.50.0"));
