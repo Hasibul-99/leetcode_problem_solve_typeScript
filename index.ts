@@ -1,34 +1,25 @@
 function maxProfit(prices: number[]): number {
-    let sm = 0,
-        max = 0;
+    if (!prices?.length) return 0;
 
-    for (let i = 0; i < prices.length; i++) {
-        if (prices[i] < prices[i + 1]) {
-            if ((!sm || !(sm < prices[i])) && prices[i] !== 0) {
-                sm = prices[i];
-            }
+    let lastIndex = prices.length -1,
+        sellIndex = prices.length -1,
+        profit = 0;
+
+    for (let i = lastIndex; i >= 0; i--) {
+        let bValue = prices[i],
+            sValue = prices[sellIndex];
+        
+        if (bValue - sValue >= 0) {
+            sellIndex = i
+        } else {
+            let price = sValue - bValue;
+            profit = Math.max(price, profit);
         }
     }
 
-    let index = prices.findIndex(e => e === sm);
-
-    if (index !== -1) {
-        for (let j = index; j < prices.length; j++) {
-            if (!max || prices[j] > max) {
-                max = prices[j]
-            }
-        }
-    }
-    
-
-    console.log("sm", sm);
-    console.log("max",max);
-    
-    
-
-    return max < sm ? 0 : max - sm ;
+    return profit;
 };
 
-console.log("maxProfit", maxProfit([3,2,6,5,0,3]));
+console.log("maxProfit", maxProfit([7,1,5,3,6,4]));
 
 // 121. Best Time to Buy and Sell Stock
