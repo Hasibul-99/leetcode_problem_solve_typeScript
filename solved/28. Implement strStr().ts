@@ -1,4 +1,5 @@
 function strStr(haystack: string, needle: string): number {
+
     if (haystack.includes(needle)) {
         let arr = haystack.split(needle),
             f = arr[0];
@@ -7,4 +8,4 @@ function strStr(haystack: string, needle: string): number {
     } else return -1;
 };
 
-console.log("strStr", strStr("umbrella", "laa"));
+console.log("strStr", strStr("hello", "ll"));
