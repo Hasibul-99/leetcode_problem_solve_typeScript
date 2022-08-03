@@ -1,9 +1,13 @@
-function defangIPaddr(address) {
-    var strArr = address.split("."), newSrt = "";
-    strArr.forEach(function (a) {
-        newSrt = newSrt + "".concat(newSrt == "" ? '' : "[.]") + a;
-    });
-    return newSrt;
+function runningSum(nums) {
+    var arr = [];
+    for (var i = nums.length - 1; i >= 0; i--) {
+        var total = nums[i];
+        for (var j = i - 1; j >= 0; j--) {
+            total = total + nums[j];
+        }
+        arr.push(total);
+    }
+    return arr.reverse();
 }
 ;
-console.log('defangIPaddr', defangIPaddr("255.100.50.0"));
+console.log("runningSum", runningSum([1, 2, 3, 4]));
