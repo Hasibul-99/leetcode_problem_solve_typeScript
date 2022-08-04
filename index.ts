@@ -1,27 +1,33 @@
 function groupAnagrams(strs: string[]): string[][] {
-    let arr: string[][] = [],
-        items: string[] = strs.sort(function (a, b) { return a.length - b.length });
+    let items: string[] = strs.sort(function (a, b) { return a.length - b.length });
+    let empty = strs.filter(st => st === '');
+    let arr: string[][] = []; 
+    
+    if(empty?.length) arr.push(empty);
 
     for (let index = 0; index < strs.length; index++) {
         let item = sortAlphabets(strs[index]);
-        let filter = items.filter(n => sortAlphabets(n) === item);
 
-        for (let j = 0; j < filter.length; j++) {
-            const element = filter[j];
-            let index = strs.findIndex(s => s === element);
+        if (strs[index]) {
+            let filter = items.filter(n => sortAlphabets(n) === item);
 
-            if (index !== -1) {
-                items.splice(index, 1);
+            for (let j = 0; j < filter.length; j++) {
+                const element = filter[j];
+                let index = strs.findIndex(s => s === element);
+    
+                if (index !== -1) {
+                    items.splice(index, 1);
+                }
             }
+    
+            arr.push(filter);
         }
-
-        arr.push(filter);
     }
 
     // return items.length ? arr.concat([items]) : arr;
     if (items.length) {
         items.forEach(n => {
-            arr.push([n]);
+            if(n) arr.push([n]);
         });
 
         return arr.sort(function (a, b) { return a.length - b.length });
