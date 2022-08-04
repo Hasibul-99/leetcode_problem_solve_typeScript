@@ -17,4 +17,3 @@ function mirrorReflection(p: number, q: number): number {
     return -1;
 };
 console.log(mirrorReflection(4, 2));
-// 29. Divide Two Integers
