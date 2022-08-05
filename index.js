@@ -1,18 +1,19 @@
-function mirrorReflection(p, q) {
-    var ref = p, ext = q;
-    while (ref % 2 === 0 && ext % 2 === 0) {
-        console.log('ref', ref);
-        ref = ref / 2;
-        ext = ext / 2;
+function countBits(n) {
+    var arr = [];
+    var _loop_1 = function (i) {
+        var bit = Number(i).toString(2);
+        var sp = bit.split('');
+        var total = 0;
+        sp.forEach(function (n) {
+            total += parseInt(n);
+        });
+        arr.push(total);
+    };
+    for (var i = 0; i <= n; i++) {
+        _loop_1(i);
     }
-    if (ext % 2 === 0 && ref % 2 !== 0)
-        return 0;
-    if (ext % 2 === 1 && ref % 2 === 0)
-        return 2;
-    if (ext % 2 === 1 && ref % 2 !== 0)
-        return 1;
-    return -1;
+    return arr;
 }
 ;
-console.log(mirrorReflection(4, 2));
-// 29. Divide Two Integers
+console.log("removeElement", countBits(5));
+// https://leetcode.com/problems/counting-bits/
