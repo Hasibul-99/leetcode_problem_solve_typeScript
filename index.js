@@ -1,14 +1,24 @@
-function myAtoi(s) {
-    var num = parseInt(s);
-    if (Math.pow(2, 31) <= num) {
-        return Math.pow(2, 31) - 1;
+function repeatedCharacter(s) {
+    if (s.length === 1)
+        return s;
+    var result = '';
+    var arr = [];
+    var _loop_1 = function (i) {
+        var index = arr.findIndex(function (e) { return e === s[i]; });
+        if (index === -1) {
+            arr.push(s[i]);
+        }
+        else {
+            result = s[i];
+            return "break";
+        }
+    };
+    for (var i = 0; i < s.length; i++) {
+        var state_1 = _loop_1(i);
+        if (state_1 === "break")
+            break;
     }
-    else if (Math.pow(-2, 31) > num) {
-        return Math.pow(-2, 31);
-    }
-    else {
-        return num ? num : 0;
-    }
+    return result;
 }
 ;
-console.log("myAtoi", myAtoi("2147483648"));
+console.log("repeatedCharacter", repeatedCharacter("abcdd"));

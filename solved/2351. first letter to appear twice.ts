@@ -19,5 +19,3 @@ function repeatedCharacter(s: string): string {
 };
 
 console.log("repeatedCharacter", repeatedCharacter("abcdd"));
-
-
