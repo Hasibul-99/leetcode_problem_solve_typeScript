@@ -1,40 +1,18 @@
-function pivotIndex(nums: number[]): number {
-    let index = -1;
+// 205. Isomorphic Strings
 
-    // for (let i = 0; i < nums.length; i++) {
-    //     let left = nums.slice(0, i);
-    //     let right = nums.slice(i + 1);
+function isIsomorphic(s: string, t: string): boolean {
+    let first = s.split(''),
+        sec = t.split('');
 
-    //     console.log("arr2.splice(0,1)", {left, right});
+    let strU = first.filter(function (item, pos) {
+            return first.indexOf(item) == pos;
+        }),
+        TexU = sec.filter(function (item, pos) {
+            return sec.indexOf(item) == pos;
+        });
 
-    //     let leftTotal = left?.length ? left.reduce((total, val) => (total || 0) + val) : 0;
-    //     let rightTotal = right?.length ? right.reduce((total, val) => (total || 0) + val) : 0;
-
-    //     console.log({leftTotal, rightTotal});
-
-    //     if (leftTotal === rightTotal) {
-    //         index = i;
-    //         break;
-    //     }
-    // }
-
-    let total = nums.reduce((total, val) => (total || 0) + val);
-    let leftSum = 0;
-
-    for (let i = 0; i < nums.length; i++) {
-        const element = nums[i];
-
-        total = total - element;
-
-        console.log({leftSum, total});
-
-        if (leftSum === total) {
-            index = i;
-            break;
-        }
-        
-        leftSum += element;
-    }
+    if (strU?.length === TexU?.length) return true;
+    else return false;
 };
 
-console.log("pirvotIndex", pivotIndex([1,7,3,6,5,6]));
+console.log("isIsomorphic", isIsomorphic("egg", "add"));
