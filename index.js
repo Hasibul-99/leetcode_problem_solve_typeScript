@@ -1,15 +1,19 @@
 // 205. Isomorphic Strings
 function isIsomorphic(s, t) {
-    var first = s.split(''), sec = t.split('');
-    var strU = first.filter(function (item, pos) {
-        return first.indexOf(item) == pos;
-    }), TexU = sec.filter(function (item, pos) {
-        return sec.indexOf(item) == pos;
-    });
-    if ((strU === null || strU === void 0 ? void 0 : strU.length) === (TexU === null || TexU === void 0 ? void 0 : TexU.length))
-        return true;
-    else
+    if (s.length !== t.length)
         return false;
+    var sObj = {}, tObj = {};
+    for (var i = 0; i < s.length; i++) {
+        if (sObj[s[i]] !== tObj[t[i]]) {
+            return false;
+        }
+        else {
+            sObj[s[i]] = i;
+            tObj[t[i]] = i;
+        }
+        console.log({ sObj: sObj, tObj: tObj });
+    }
+    return true;
 }
 ;
-console.log("isIsomorphic", isIsomorphic("egg", "add"));
+console.log("isIsomorphic", isIsomorphic("bbbaaaba", "aaabbbba"));
