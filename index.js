@@ -1,19 +1,12 @@
-// 205. Isomorphic Strings
-function isIsomorphic(s, t) {
-    if (s.length !== t.length)
-        return false;
-    var sObj = {}, tObj = {};
-    for (var i = 0; i < s.length; i++) {
-        if (sObj[s[i]] !== tObj[t[i]]) {
-            return false;
-        }
-        else {
-            sObj[s[i]] = i;
-            tObj[t[i]] = i;
-        }
-        console.log({ sObj: sObj, tObj: tObj });
+function isSubsequence(s, t) {
+    if (!s.length)
+        return true;
+    var point = 0;
+    for (var i = 0; i < t.length; i++) {
+        if (s[point] === t[i])
+            point++;
     }
-    return true;
+    return point === s.length;
 }
 ;
-console.log("isIsomorphic", isIsomorphic("bbbaaaba", "aaabbbba"));
+console.log("isSubsequence", isSubsequence("abc", "ahbgdc"));
