@@ -1,60 +1,31 @@
-function longestPalindrome(s) {
-    if (!(s === null || s === void 0 ? void 0 : s.length))
-        return 0;
-    var counts = {}, total = 0, odds = [];
-    for (var i = 0; i < s.length; i++) {
-        var ele = s[i];
-        if (counts[ele]) {
-            counts[ele] += 1;
-        }
-        else {
-            counts[ele] = 1;
-        }
-    }
-    ;
-    console.log("counts", counts);
-    for (var _i = 0, _a = Object.keys(counts); _i < _a.length; _i++) {
-        var key = _a[_i];
-        if ((counts[key] % 2) === 0) {
-            total = total + (counts[key]);
-        }
-        else {
-            var data = {
-                key: key,
-                val: counts[key]
-            };
-            odds.push(counts[key]);
+function validMountainArray(arr) {
+    var result = true;
+    var max = Math.max.apply(Math, arr), index = arr.findIndex(function (a) { return a === max; });
+    if (index === 0)
+        return false;
+    if (index === arr.length - 1)
+        return false;
+    // console.log(max);
+    // ====>
+    for (var i = index; i < arr.length; i++) {
+        var ele = arr[i], next = arr[i + 1];
+        if (next && ele <= next) {
+            console.log({ ele: ele, next: next });
+            result = false;
+            break;
         }
     }
-    console.log("oddCounts", odds);
-    var maximum = Math.max.apply(Math, odds);
-    var minimum = Math.min.apply(Math, odds);
-    console.log("maximum", maximum);
-    console.log("minimum", minimum);
-    var counter = true;
-    odds.forEach(function (odd) {
-        if (minimum === 1) {
-            if (odd === 1) {
-                if (counter) {
-                    total = total + 1;
-                    counter = false;
-                }
-            }
-            else {
-                total = total + (odd - 1);
-            }
+    // <====
+    for (var j = index; j >= 0; j--) {
+        var ele = arr[j], pre = arr[j - 1];
+        // console.log("ele2", ele);
+        if (pre && ele <= pre) {
+            console.log({ ele: ele, pre: pre });
+            result = false;
+            break;
         }
-        else {
-            if (odd === maximum && counter) {
-                total = total + maximum;
-                counter = false;
-            }
-            else {
-                total = total + (odd - 1);
-            }
-        }
-    });
-    return total;
+    }
+    return result;
 }
 ;
-console.log("longestPalindrome", longestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"));
+console.log("validMountainArray", validMountainArray([1, 3, 2]));
