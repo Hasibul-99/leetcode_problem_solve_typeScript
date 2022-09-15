@@ -1,14 +1,21 @@
-function canBeIncreasing(nums) {
-    var count = 0;
-    for (var i = 1; i < nums.length; i++) {
-        if (nums[i - 1] >= nums[i]) {
-            count += 1;
-            if (i > 1 && nums[i - 2] >= nums[i]) {
-                nums[i] = nums[i - 1];
-            }
+// 2007. Find Original Array From Doubled Array JavaScript / typeScript 
+function findOriginalArray(changed) {
+    if ((changed.length % 2) !== 0)
+        return [];
+    var result = [], q = [];
+    changed.sort(function (a, b) { return a - b; });
+    changed.forEach(function (num) {
+        if (q.length && num === q[0]) {
+            q.shift();
         }
-    }
-    return count <= 1 ? true : false;
+        else {
+            q.push(num * 2);
+            result.push(num);
+        }
+    });
+    console.log("result", result);
+    console.log("q", q);
+    return q.length ? [] : result;
 }
 ;
-console.log("canBeIncreasing", canBeIncreasing([6, 7, 2, 8, 9]));
+console.log("findOriginalArray", findOriginalArray([6, 3, 0, 1]));
