@@ -1,14 +1,20 @@
-function reverseWords(s) {
-    var str = "";
-    if (s) {
-        var q_1 = s.trim().split(" ").reverse(); //.join("");
-        q_1.forEach(function (item, index) {
-            if (item) {
-                str = str + item + "".concat((q_1.length !== index + 1) ? ' ' : '');
-            }
-        });
+function maxArea(height) {
+    var area = 0, i = 0, j = height.length - 1;
+    // for (let i = 0; i < height.length; i++) {
+    //     for (let j = i + 1; j < height.length; j++) {
+    //         area = Math.max(area, Math.min(height[j], height[i]) * (j - i))
+    //     }
+    // }
+    while (i < j) {
+        area = Math.max(area, Math.min(height[j], height[i]) * (j - i));
+        if (height[i] <= height[j]) {
+            i++;
+        }
+        else {
+            j--;
+        }
     }
-    return str;
+    return area;
 }
 ;
-console.log("reverseWords =>", reverseWords("a good   example"));
+console.log("maxArea =>", maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));
