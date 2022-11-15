@@ -1,14 +1,12 @@
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
+function buildArray(nums) {
+    var result = [];
+    // nums.forEach((item, idx) => {
+    //     result[item] = nums[idx];
+    // });
+    for (var i = 0; i < nums.length; i++) {
+        result.push(nums[nums[i]]);
     }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
-function getConcatenation(nums) {
-    return __spreadArray(__spreadArray([], nums, true), nums, true);
+    return result;
 }
 ;
-console.log("getConcatenation =>", getConcatenation([1, 3, 2, 1]));
+console.log("buildArray =>", buildArray([5, 0, 1, 2, 3, 4]));
