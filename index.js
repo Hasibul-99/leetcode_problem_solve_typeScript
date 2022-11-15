@@ -1,20 +1,14 @@
-function maxArea(height) {
-    var area = 0, i = 0, j = height.length - 1;
-    // for (let i = 0; i < height.length; i++) {
-    //     for (let j = i + 1; j < height.length; j++) {
-    //         area = Math.max(area, Math.min(height[j], height[i]) * (j - i))
-    //     }
-    // }
-    while (i < j) {
-        area = Math.max(area, Math.min(height[j], height[i]) * (j - i));
-        if (height[i] <= height[j]) {
-            i++;
-        }
-        else {
-            j--;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
         }
     }
-    return area;
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
+function getConcatenation(nums) {
+    return __spreadArray(__spreadArray([], nums, true), nums, true);
 }
 ;
-console.log("maxArea =>", maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));
+console.log("getConcatenation =>", getConcatenation([1, 3, 2, 1]));
