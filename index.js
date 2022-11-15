@@ -1,14 +1,14 @@
-function finalValueAfterOperations(operations) {
-    var items = {
-        "++X": 1,
-        "X++": 1,
-        "--X": -1,
-        "X--": -1
-    }, total = 0;
-    operations.forEach(function (opera) {
-        total = total + items[opera];
-    });
-    return total;
+function reverseWords(s) {
+    var str = "";
+    if (s) {
+        var q_1 = s.trim().split(" ").reverse(); //.join("");
+        q_1.forEach(function (item, index) {
+            if (item) {
+                str = str + item + "".concat((q_1.length !== index + 1) ? ' ' : '');
+            }
+        });
+    }
+    return str;
 }
 ;
-console.log("finalValueAfterOperations", finalValueAfterOperations(["++X", "++X", "X++"]));
+console.log("reverseWords =>", reverseWords("a good   example"));

@@ -1,20 +1,17 @@
-function finalValueAfterOperations(operations: string[]): number {
+function reverseWords(s: string): string {
+    let str = "";
 
-    let items = {
-        "++X": 1,
-        "X++": 1,
-        "--X": -1,
-        "X--": -1
-    },
-    total = 0;
-    
-    operations.forEach(opera => {
-        total = total + items[opera];
-    })
+    if (s) {
+        let q = s.trim().split(" ").reverse(); //.join("");
 
+        q.forEach((item, index) => {
+            if (item) {
+                str = str + item + `${(q.length !== index + 1) ? ' ' : ''}`;
+            }
+        })
+    }
 
-    return total;
-
+    return str;
 };
 
-console.log("finalValueAfterOperations", finalValueAfterOperations(["++X","++X","X++"]));
+console.log("reverseWords =>", reverseWords("a good   example"));
