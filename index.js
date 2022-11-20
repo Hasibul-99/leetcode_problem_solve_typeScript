@@ -1,10 +1,13 @@
-function shuffle(nums, n) {
-    var result = [];
-    for (var i = 0; i < n; i++) {
-        result.push(nums[i]);
-        result.push(nums[n + i]);
+function numIdenticalPairs(nums) {
+    var arr = [];
+    for (var i = 0; i < nums.length; i++) {
+        for (var j = i + 1; j < nums.length; j++) {
+            if (nums[i] === nums[j] && i < j) {
+                arr.push({ i: nums[i], j: nums[j] });
+            }
+        }
     }
-    return result;
+    return arr.length;
 }
 ;
-console.log("shuffle", shuffle([1, 1, 2, 2], 2));
+console.log("numIdenticalPairs", numIdenticalPairs([1, 2, 3, 1, 1, 3]));
