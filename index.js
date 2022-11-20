@@ -1,11 +1,13 @@
-function kidsWithCandies(candies, extraCandies) {
-    var max = Math.max.apply(Math, candies), result = [];
-    for (var i = 0; i < candies.length; i++) {
-        var can = candies[i] + extraCandies;
-        var value = can >= max ? true : false;
-        result.push(value);
+function smallerNumbersThanCurrent(nums) {
+    var result = [];
+    var _loop_1 = function (i) {
+        var filter = nums.filter(function (item) { return item < nums[i]; });
+        result.push(filter.length);
+    };
+    for (var i = 0; i < nums.length; i++) {
+        _loop_1(i);
     }
     return result;
 }
 ;
-console.log("kidsWithCandies", kidsWithCandies([2, 3, 5, 1, 3], 3));
+console.log("smallerNumbersThanCurrent", smallerNumbersThanCurrent([8, 1, 2, 2, 3]));
