@@ -1,12 +1,10 @@
-function buildArray(nums) {
+function shuffle(nums, n) {
     var result = [];
-    // nums.forEach((item, idx) => {
-    //     result[item] = nums[idx];
-    // });
-    for (var i = 0; i < nums.length; i++) {
-        result.push(nums[nums[i]]);
+    for (var i = 0; i < n; i++) {
+        result.push(nums[i]);
+        result.push(nums[n + i]);
     }
     return result;
 }
 ;
-console.log("buildArray =>", buildArray([5, 0, 1, 2, 3, 4]));
+console.log("shuffle", shuffle([1, 1, 2, 2], 2));
