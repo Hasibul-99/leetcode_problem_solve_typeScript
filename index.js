@@ -1,13 +1,11 @@
-function numIdenticalPairs(nums) {
-    var arr = [];
-    for (var i = 0; i < nums.length; i++) {
-        for (var j = i + 1; j < nums.length; j++) {
-            if (nums[i] === nums[j] && i < j) {
-                arr.push({ i: nums[i], j: nums[j] });
-            }
-        }
+function kidsWithCandies(candies, extraCandies) {
+    var max = Math.max.apply(Math, candies), result = [];
+    for (var i = 0; i < candies.length; i++) {
+        var can = candies[i] + extraCandies;
+        var value = can >= max ? true : false;
+        result.push(value);
     }
-    return arr.length;
+    return result;
 }
 ;
-console.log("numIdenticalPairs", numIdenticalPairs([1, 2, 3, 1, 1, 3]));
+console.log("kidsWithCandies", kidsWithCandies([2, 3, 5, 1, 3], 3));
