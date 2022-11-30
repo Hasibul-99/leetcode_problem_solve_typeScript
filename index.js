@@ -1,13 +1,23 @@
-function smallerNumbersThanCurrent(nums) {
-    var result = [];
-    var _loop_1 = function (i) {
-        var filter = nums.filter(function (item) { return item < nums[i]; });
-        result.push(filter.length);
-    };
-    for (var i = 0; i < nums.length; i++) {
-        _loop_1(i);
+function uniqueOccurrences(arr) {
+    var numObj = {};
+    for (var _i = 0, arr_1 = arr; _i < arr_1.length; _i++) {
+        var num = arr_1[_i];
+        if (numObj[num]) {
+            numObj[num] = numObj[num] + 1;
+        }
+        else {
+            numObj[num] = 1;
+        }
     }
-    return result;
+    var valuesArr = Object.values(numObj).sort();
+    var j = 0;
+    for (var i = 1; i < valuesArr.length; i++) {
+        if (valuesArr[j] === valuesArr[i]) {
+            return false;
+        }
+        j++;
+    }
+    return true;
 }
 ;
-console.log("smallerNumbersThanCurrent", smallerNumbersThanCurrent([8, 1, 2, 2, 3]));
+console.log("uniqueOccurrences", uniqueOccurrences([1, 2, 2, 1, 1, 3]));
