@@ -2,9 +2,7 @@ function dailyTemperatures(temperatures: number[]): number[] {
     let arr : number[] = Array(temperatures.length).fill(0);
 
     for (let i = 0; i < temperatures.length; i++) {
-        // console.log(temperatures[i]);
         for (let j = i + 1; j < temperatures.length; j++) {
-            console.log({i: temperatures[i], j: temperatures[j]});
             if (temperatures[j] > temperatures[i]) {
                 arr[i] = j-i;
                 break;
