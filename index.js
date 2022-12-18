@@ -1,14 +1,9 @@
-function dailyTemperatures(temperatures) {
-    var arr = Array(temperatures.length).fill(0);
-    for (var i = 0; i < temperatures.length; i++) {
-        for (var j = i + 1; j < temperatures.length; j++) {
-            if (temperatures[j] > temperatures[i]) {
-                arr[i] = j - i;
-                break;
-            }
-        }
+function restoreString(s, indices) {
+    var suffledArr = new Array(s.length).fill(0);
+    for (var i = 0; i < s.length; i++) {
+        suffledArr[i] = s[indices.indexOf(i)];
     }
-    return arr;
+    return suffledArr.join('');
 }
 ;
-console.log("dailyTemperatures", dailyTemperatures([30, 60, 90]));
+console.log("restoreString", restoreString("codeleet", [4, 5, 6, 7, 0, 2, 1, 3]));
