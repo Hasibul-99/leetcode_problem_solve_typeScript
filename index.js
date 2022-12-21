@@ -1,14 +1,18 @@
-function fib(n) {
-    return fibReturn(n);
+function tribonacci(n) {
+    var memo = new Array(n + 1);
+    function tri_seq(n) {
+        if (n === 0)
+            return 0;
+        if (n === 1)
+            return 1;
+        if (n === 2)
+            return 1;
+        if (memo[n] !== undefined)
+            return memo[n];
+        memo[n] = tri_seq(n - 1) + tri_seq(n - 2) + tri_seq(n - 3);
+        return memo[n];
+    }
+    return tri_seq(n);
 }
 ;
-var fibReturn = function (n, memo) {
-    if (memo === void 0) { memo = {}; }
-    if (n in memo)
-        return memo[n];
-    if (n <= 2)
-        return n;
-    memo[n] = fibReturn(n - 1, { memo: memo }) + fibReturn(n - 2, memo);
-    return memo[n];
-};
-console.log("validPath", fib(4));
+console.log("tribonacci", tribonacci(25));
