@@ -1,9 +1,14 @@
-function restoreString(s, indices) {
-    var suffledArr = new Array(s.length).fill(0);
-    for (var i = 0; i < s.length; i++) {
-        suffledArr[i] = s[indices.indexOf(i)];
-    }
-    return suffledArr.join('');
+function fib(n) {
+    return fibReturn(n);
 }
 ;
-console.log("restoreString", restoreString("codeleet", [4, 5, 6, 7, 0, 2, 1, 3]));
+var fibReturn = function (n, memo) {
+    if (memo === void 0) { memo = {}; }
+    if (n in memo)
+        return memo[n];
+    if (n <= 2)
+        return n;
+    memo[n] = fibReturn(n - 1, { memo: memo }) + fibReturn(n - 2, memo);
+    return memo[n];
+};
+console.log("validPath", fib(4));
