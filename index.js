@@ -1,31 +1,17 @@
-function maximumBags(capacity, rocks, additionalRocks) {
-    var result = 0, length = capacity.length, content = [];
-    for (var i = 0; i < length; i++) {
-        var cap = capacity[i], rock = rocks[i];
-        // if (cap === rock) {
-        //     result += 1;
-        // } else if (additionalRocks === 0) {
-        //     // break;
-        // } else {
-        //     if ( additionalRocks - (cap - rock) >= 0) {
-        //         additionalRocks = additionalRocks - (cap - rock);
-        //         result += 1;
-        //     }
-        // }      
-        content.push(cap - rock);
+function halvesAreAlike(s) {
+    var h = s.length / 2, a = s.slice(0, h), b = s.slice(h, s.length), vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'], aArr = {}, bArr = {}, aTotal = 0, bTotal = 0;
+    for (var i = 0; i < vowels.length; i++) {
+        var item = vowels[i];
+        aArr[item] = a.split(item).length - 1;
+        bArr[item] = b.split(item).length - 1;
+        aTotal += a.split(item).length - 1;
+        bTotal += b.split(item).length - 1;
     }
-    var row = content.sort(function (a, b) { return a - b; });
-    for (var j = 0; j < row.length; j++) {
-        var item = row[j];
-        if (additionalRocks - item >= 0) {
-            additionalRocks = additionalRocks - item;
-            result += 1;
-        }
-        else {
-            break;
-        }
-    }
-    return result;
+    // console.log({aArr, bArr});
+    // if (aArr.a === bArr.a && aArr.e === bArr.e && aArr.i === bArr.i && aArr.o === bArr.o && aArr.u === bArr.u && aArr.A === bArr.A && aArr.E === bArr.E && aArr.I === bArr.I && aArr.O === bArr.O && aArr.U === bArr.U) {
+    //     return true;
+    // } else return false;
+    return aTotal === bTotal;
 }
 ;
-console.log("maximumBags", maximumBags([54, 18, 91, 49, 51, 45, 58, 54, 47, 91, 90, 20, 85, 20, 90, 49, 10, 84, 59, 29, 40, 9, 100, 1, 64, 71, 30, 46, 91], [14, 13, 16, 44, 8, 20, 51, 15, 46, 76, 51, 20, 77, 13, 14, 35, 6, 34, 34, 13, 3, 8, 1, 1, 61, 5, 2, 15, 18], 77));
+console.log("halvesAreAlike", halvesAreAlike("AbCdEfGh"));
