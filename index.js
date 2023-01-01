@@ -1,17 +1,18 @@
-function halvesAreAlike(s) {
-    var h = s.length / 2, a = s.slice(0, h), b = s.slice(h, s.length), vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'], aArr = {}, bArr = {}, aTotal = 0, bTotal = 0;
-    for (var i = 0; i < vowels.length; i++) {
-        var item = vowels[i];
-        aArr[item] = a.split(item).length - 1;
-        bArr[item] = b.split(item).length - 1;
-        aTotal += a.split(item).length - 1;
-        bTotal += b.split(item).length - 1;
+function wordPattern(pattern, s) {
+    var a = pattern.split(''), b = s.split(' '), pt = [], x = {};
+    if (a.length !== b.length)
+        return false;
+    for (var i = 0; i < a.length; i++) {
+        if (!x[a[i]]) {
+            x[a[i]] = b[i];
+            if (pt.indexOf(b[i]) !== -1)
+                return false;
+            pt.push(b[i]);
+        }
+        else if (x[a[i]] !== b[i])
+            return false;
     }
-    // console.log({aArr, bArr});
-    // if (aArr.a === bArr.a && aArr.e === bArr.e && aArr.i === bArr.i && aArr.o === bArr.o && aArr.u === bArr.u && aArr.A === bArr.A && aArr.E === bArr.E && aArr.I === bArr.I && aArr.O === bArr.O && aArr.U === bArr.U) {
-    //     return true;
-    // } else return false;
-    return aTotal === bTotal;
+    return true;
 }
 ;
-console.log("halvesAreAlike", halvesAreAlike("AbCdEfGh"));
+console.log("wordPattern", wordPattern("abba", "dog cat cat dog"));
