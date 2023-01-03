@@ -1,8 +1,14 @@
-function detectCapitalUse(word) {
-    var len = word.length;
-    if (len === 0)
-        return false;
-    return word.toUpperCase() === word || word.slice(1).toLowerCase() === word.slice(1);
+function minDeletionSize(strs) {
+    var n = strs.length, len = strs[0].length, res = 0;
+    for (var j = 0; j < len; j++) {
+        for (var i = 0; i < n; i++) {
+            if (strs[i + 1] && strs[i][j] > strs[i + 1][j]) {
+                res += 1;
+                break;
+            }
+        }
+    }
+    return res;
 }
 ;
-console.log("detectCapitalUse", detectCapitalUse("FlaG"));
+console.log("minDeletionSize", minDeletionSize(["cba", "daf", "ghi"]));
