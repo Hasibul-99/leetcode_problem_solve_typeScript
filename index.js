@@ -1,14 +1,14 @@
-function minDeletionSize(strs) {
-    var n = strs.length, len = strs[0].length, res = 0;
-    for (var j = 0; j < len; j++) {
-        for (var i = 0; i < n; i++) {
-            if (strs[i + 1] && strs[i][j] > strs[i + 1][j]) {
-                res += 1;
-                break;
-            }
+function findMinArrowShots(points) {
+    var arrows = 1;
+    var items = points.sort(function (a, b) { return a[1] - b[1]; });
+    var endPoint = items[0][1];
+    for (var i = 0; i < items.length; i++) {
+        if (endPoint < points[i][0]) {
+            arrows = arrows + 1;
+            endPoint = points[i][1];
         }
     }
-    return res;
+    return arrows;
 }
 ;
-console.log("minDeletionSize", minDeletionSize(["cba", "daf", "ghi"]));
+console.log("findMinArrowShots", findMinArrowShots([[1, 2], [3, 4], [5, 6], [7, 8]]));
