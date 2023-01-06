@@ -1,14 +1,16 @@
-function findMinArrowShots(points) {
-    var arrows = 1;
-    var items = points.sort(function (a, b) { return a[1] - b[1]; });
-    var endPoint = items[0][1];
+function maxIceCream(costs, coins) {
+    var items = costs.sort(function (a, b) { return a - b; }), res = 0;
     for (var i = 0; i < items.length; i++) {
-        if (endPoint < points[i][0]) {
-            arrows = arrows + 1;
-            endPoint = points[i][1];
+        var price = items[i];
+        if (price <= coins) {
+            coins = coins - price;
+            res += 1;
+        }
+        else {
+            break;
         }
     }
-    return arrows;
+    return res;
 }
-
-console.log("findMinArrowShots", findMinArrowShots([[1, 2], [3, 4], [5, 6], [7, 8]]));
+;
+console.log("maxIceCream", maxIceCream([10, 6, 8, 7, 7, 8], 5));
