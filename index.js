@@ -1,16 +1,16 @@
-function maxIceCream(costs, coins) {
-    var items = costs.sort(function (a, b) { return a - b; }), res = 0;
-    for (var i = 0; i < items.length; i++) {
-        var price = items[i];
-        if (price <= coins) {
-            coins = coins - price;
-            res += 1;
-        }
-        else {
-            break;
+function canCompleteCircuit(gas, cost) {
+    var lan = gas.length, tank = 0, total = 0, start = 0;
+    for (var i = 0; i < lan; i++) {
+        var g = gas[i], c = cost[i];
+        tank += (g - c);
+        if (tank < 0) {
+            start = i + 1;
+            total += tank;
+            tank = 0;
         }
     }
-    return res;
+    ;
+    return tank + total >= 0 ? start : -1;
 }
 ;
-console.log("maxIceCream", maxIceCream([10, 6, 8, 7, 7, 8], 5));
+console.log("canCompleteCircuit", canCompleteCircuit([5, 1, 2, 3, 4], [4, 4, 1, 5, 1]));
