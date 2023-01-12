@@ -1,37 +1,34 @@
-function minTime(n, edges, hasApple) {
-    var child = new Array(n);
+function countSubTrees(n, edges, labels) {
+    var adj = [], countMap = {}, result = [];
     for (var i = 0; i < n; i++) {
-        child[i] = new Array();
+        adj.push([]);
+        result.push(0);
+        countMap[labels[i]] = 0;
     }
     ;
-    for (var _i = 0, edges_1 = edges; _i < edges_1.length; _i++) {
-        var edge = edges_1[_i];
-        child[edge[0]].push(edge[1]);
-        child[edge[1]].push(edge[0]);
+    for (var j = 0; j < edges.length; j++) {
+        var edge = edges[j];
+        adj[edge[0]].push(edge[1]);
+        adj[edge[1]].push(edge[0]);
     }
     ;
-    console.log("child", child);
-    var res = 0;
-    var dfs = function (node, parent) {
-        var val = false;
-        console.log("child[node]", child[node]);
-        for (var _i = 0, _a = child[node]; _i < _a.length; _i++) {
-            var c = _a[_i];
-            if (c === parent)
-                continue;
-            res++;
-            var bol = dfs(c, node);
-            if (bol)
-                res++;
-            else
-                res--;
-            val = val || bol;
+    var visited = {};
+    var dfs = function (node) {
+        var label = labels[node];
+        console.log(label);
+        if (visited[node])
+            return false;
+        visited[node] = true;
+        var start = countMap[label];
+        for (var _i = 0, _a = adj[node]; _i < _a.length; _i++) {
+            var next = _a[_i];
+            dfs(next);
         }
-        if (hasApple[node])
-            return true;
-        return val;
+        countMap[label] = 1 + countMap[label];
+        result[node] = countMap[label] - start;
     };
-    dfs(0, null);
-    return res;
+    dfs(0);
+    return result;
 }
-console.log("minTime", minTime(7, [[0, 1], [0, 2], [1, 4], [1, 5], [2, 3], [2, 6]], [false, false, true, false, true, true, false]));
+;
+console.log("countSubTrees", countSubTrees(4, [[0, 2], [0, 3], [1, 2]], "aeed"));
