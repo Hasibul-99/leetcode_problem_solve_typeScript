@@ -1,30 +1,22 @@
-function longestPath(parent, s) {
-    var len = parent.length, result = 0, graph = parent.map(function (p) { return []; });
-    for (var i = 1; i < len; i++) {
-        graph[parent[i]].push(i);
-    }
-    ;
-    var longestPathDownFrom = function (node) {
-        var max1 = 0, max2 = 0;
-        for (var _i = 0, _a = graph[node]; _i < _a.length; _i++) {
-            var sNode = _a[_i];
-            var res = longestPathDownFrom(sNode);
-            if (s[node] === s[sNode])
-                continue;
-            if (res > max1) {
-                max2 = max1,
-                    max1 = res;
-            }
-            else if (res > max2) {
-                max2 = res;
-            }
+function differenceOfSum(nums) {
+    var total = nums.reduce(function (partialSum, a) { return partialSum + a; }, 0), subTotal = 0;
+    var _loop_1 = function (i) {
+        var ele = nums[i].toString();
+        if (ele.length === 1) {
+            subTotal = subTotal + parseInt(ele);
         }
-        ;
-        result = Math.max(result, 1 + max1 + max2);
-        return 1 + max1;
+        else {
+            var sp = ele.split(""), to_1 = 0;
+            sp.forEach(function (q) {
+                to_1 = to_1 + parseInt(q);
+            });
+            subTotal = subTotal + to_1;
+        }
     };
-    longestPathDownFrom(0);
-    return result;
+    for (var i = 0; i < nums.length; i++) {
+        _loop_1(i);
+    }
+    return (total - subTotal) || 0;
 }
 ;
-console.log("longestPath", longestPath([-1, 0, 0, 0], "aabc"));
+console.log("differenceOfSum", differenceOfSum([1, 15, 6, 3]));
