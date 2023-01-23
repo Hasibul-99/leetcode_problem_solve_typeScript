@@ -1,34 +1,52 @@
-function partition(s) {
-    var getDp = function (s) {
-        var len = s.length, dp = Array(len);
-        for (var i = 0; i < len; i++) {
-            for (var j = 0; j <= i; j++) {
-                if (!dp[j])
-                    dp[j] = Array(len);
-                dp[j][i] = (s[i] === s[j]) && (i - j <= 2 || dp[j + 1][i - 1]);
-            }
+function findJudge(n, trust) {
+    var _a, _b;
+    if (!trust.length) {
+        if (n === 1)
+            return 1;
+        else
+            return -1;
+    }
+    ;
+    var list = {};
+    for (var i = 0; i < trust.length; i++) {
+        var ele = trust[i];
+        if (list[ele[0]]) {
+            list[ele[0]]["start"] = (list[ele[0]] && list[ele[0]].start ? list[ele[0]].start : 0) + 1;
         }
-        return dp;
+        else {
+            list[ele[0]] = {
+                start: (list[ele[0]] && list[ele[0]].start ? list[ele[0]].start : 0) + 1
+            };
+        }
+        if (list[ele[1]]) {
+            list[ele[1]]["end"] = (list[ele[1]]["end"] || 0) + 1;
+        }
+        else {
+            list[ele[1]] = {
+                end: (list[ele[1]] && list[ele[1]]["end"] ? list[ele[1]]["end"] : 0) + 1
+            };
+        }
+    }
+    ;
+    console.log("list", list);
+    var maxContent = {
+        key: 0,
+        val: {
+            start: 0,
+            end: 0
+        }
     };
-    var dfs = function (dp, res, now, s, index) {
-        var len = s.length;
-        if (index === len) {
-            res.push(Array.from(now));
-            return;
+    for (var i in list) {
+        // console.log(`${i}: ${list[i].end}`);
+        if (list[i].end >= maxContent.val.end) {
+            maxContent = {
+                key: parseInt(i),
+                val: list[i]
+            };
         }
-        for (var i = index; i < len; i++) {
-            if (dp[index][i]) {
-                now.push(s.substring(index, i + 1));
-                dfs(dp, res, now, s, i + 1);
-                now.pop();
-            }
-        }
-    };
-    var res = [], now = [];
-    var dp = getDp(s);
-    dfs(dp, res, now, s, 0);
-    console.log("dp", dp);
-    return res;
+    }
+    console.log("maxContent", maxContent);
+    return ((_a = maxContent === null || maxContent === void 0 ? void 0 : maxContent.val) === null || _a === void 0 ? void 0 : _a.end) === (n - 1) && !((_b = maxContent === null || maxContent === void 0 ? void 0 : maxContent.val) === null || _b === void 0 ? void 0 : _b.start) ? maxContent.key : -1;
 }
 ;
-console.log("partition", partition("aab"));
+console.log("findJudge", findJudge(2, []));
