@@ -1,52 +1,22 @@
-function findJudge(n, trust) {
-    var _a, _b;
-    if (!trust.length) {
-        if (n === 1)
-            return 1;
-        else
-            return -1;
-    }
-    ;
-    var list = {};
-    for (var i = 0; i < trust.length; i++) {
-        var ele = trust[i];
-        if (list[ele[0]]) {
-            list[ele[0]]["start"] = (list[ele[0]] && list[ele[0]].start ? list[ele[0]].start : 0) + 1;
-        }
-        else {
-            list[ele[0]] = {
-                start: (list[ele[0]] && list[ele[0]].start ? list[ele[0]].start : 0) + 1
-            };
-        }
-        if (list[ele[1]]) {
-            list[ele[1]]["end"] = (list[ele[1]]["end"] || 0) + 1;
-        }
-        else {
-            list[ele[1]] = {
-                end: (list[ele[1]] && list[ele[1]]["end"] ? list[ele[1]]["end"] : 0) + 1
-            };
-        }
-    }
-    ;
-    console.log("list", list);
-    var maxContent = {
-        key: 0,
-        val: {
-            start: 0,
-            end: 0
+function getCommon(nums1, nums2) {
+    var numsSort = nums1.sort(function (a, b) { return a - b; }), res = -1;
+    console.log("numsSort", numsSort);
+    var _loop_1 = function (i) {
+        var ele = numsSort[i];
+        console.log("ele", ele);
+        var idx = nums2.findIndex(function (item) { return item === ele; });
+        console.log("idx", idx);
+        if (idx !== -1) {
+            res = ele;
+            return "break";
         }
     };
-    for (var i in list) {
-        // console.log(`${i}: ${list[i].end}`);
-        if (list[i].end >= maxContent.val.end) {
-            maxContent = {
-                key: parseInt(i),
-                val: list[i]
-            };
-        }
+    for (var i = 0; i < numsSort.length; i++) {
+        var state_1 = _loop_1(i);
+        if (state_1 === "break")
+            break;
     }
-    console.log("maxContent", maxContent);
-    return ((_a = maxContent === null || maxContent === void 0 ? void 0 : maxContent.val) === null || _a === void 0 ? void 0 : _a.end) === (n - 1) && !((_b = maxContent === null || maxContent === void 0 ? void 0 : maxContent.val) === null || _b === void 0 ? void 0 : _b.start) ? maxContent.key : -1;
+    return res;
 }
 ;
-console.log("findJudge", findJudge(2, []));
+console.log("getCommon", getCommon([3, 4, 5, 10, 12, 15, 16, 16, 25, 48, 51, 69, 74, 74, 78, 78, 78, 82, 82, 88], [3, 8, 9, 10, 13, 16, 24, 25, 27, 29, 34, 39, 55, 62, 70, 80, 83, 87, 92, 94]));
