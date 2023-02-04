@@ -1,19 +1,15 @@
-function separateDigits(nums) {
-    var res = [];
-    for (var i = 0; i < nums.length; i++) {
-        var ele = nums[i];
-        if (ele > 9) {
-            var item = ele.toString();
-            for (var j = 0; j < item.length; j++) {
-                var n = parseInt(item[j]);
-                res.push(n);
+function maxCount(banned, n, maxSum) {
+    var arr = [];
+    for (var i = 1; i <= n; i++) {
+        if (!banned.includes(i)) {
+            var total = arr.length ? arr.reduce(function (total, val) { return (total || 0) + val; }) : 0;
+            if (total + i <= maxSum) {
+                arr.push(i);
             }
         }
-        else {
-            res.push(ele);
-        }
     }
-    return res;
+    console.log('aa', arr);
+    return arr.length;
 }
 ;
-console.log("separateDigits", separateDigits([13, 25, 83, 77]));
+console.log("maxCount", maxCount([11], 7, 50));
