@@ -1,15 +1,24 @@
-function maxCount(banned, n, maxSum) {
+function vowelStrings(words, queries) {
     var arr = [];
-    for (var i = 1; i <= n; i++) {
-        if (!banned.includes(i)) {
-            var total = arr.length ? arr.reduce(function (total, val) { return (total || 0) + val; }) : 0;
-            if (total + i <= maxSum) {
-                arr.push(i);
-            }
+    for (var i = 0; i < words.length; i++) {
+        var ele = words[i];
+        if (["a", "e", "i", "o", "u"].includes(ele[0]) && ["a", "e", "i", "o", "u"].includes(ele[ele.length - 1])) {
+            arr.push(1);
+        }
+        else {
+            arr.push(0);
         }
     }
-    console.log('aa', arr);
-    return arr.length;
+    var res = [];
+    for (var i = 0; i < queries.length; i++) {
+        var ele = queries[i];
+        var total = 0;
+        for (var j = ele[0]; j <= ele[1]; j++) {
+            total = total + arr[j];
+        }
+        res.push(total);
+    }
+    return res;
 }
 ;
-console.log("maxCount", maxCount([11], 7, 50));
+console.log("vowelStrings", vowelStrings(["aba", "bcb", "ece", "aa", "e"], [[0, 2], [1, 4], [1, 1]]));
