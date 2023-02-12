@@ -1,24 +1,14 @@
-function vowelStrings(words, queries) {
-    var arr = [];
-    for (var i = 0; i < words.length; i++) {
-        var ele = words[i];
-        if (["a", "e", "i", "o", "u"].includes(ele[0]) && ["a", "e", "i", "o", "u"].includes(ele[ele.length - 1])) {
-            arr.push(1);
-        }
-        else {
-            arr.push(0);
-        }
+function findTheArrayConcVal(nums) {
+    var output = 0;
+    var i = 0;
+    var j = nums.length - 1;
+    while (i <= j) {
+        output += Number(i === j ? nums[i] : "".concat(nums[i]) + "".concat(nums[j]));
+        i++;
+        j--;
     }
-    var res = [];
-    for (var i = 0; i < queries.length; i++) {
-        var ele = queries[i];
-        var total = 0;
-        for (var j = ele[0]; j <= ele[1]; j++) {
-            total = total + arr[j];
-        }
-        res.push(total);
-    }
-    return res;
+    ;
+    return output;
 }
 ;
-console.log("vowelStrings", vowelStrings(["aba", "bcb", "ece", "aa", "e"], [[0, 2], [1, 4], [1, 1]]));
+console.log("findTheArrayConcVal", findTheArrayConcVal([7, 52, 2, 4]));
