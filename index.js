@@ -1,29 +1,35 @@
-function addToArrayForm(num, k) {
-    // let res: number[] = [],
-    //     remi = 0,
-    //     str = k.toString(),
-    //     len: number = str.length;
-    // for (let i = num.length - 1; i >= 0; i--) {
-    //     const first = num[i];
-    //     let sec = parseInt(str[len - 1]);
-    //     let total = first + (sec || 0) + remi;
-    //     remi = 0;
-    //     if (total <= 9) {
-    //         res.unshift(total);
+function searchInsert(nums, target) {
+    // let index = 0;
+    // if (!target || !nums.length || nums[0] > target) return 0;
+    // for (let i = 0; i < nums.length; i++) {
+    //     const ele = nums[i];
+    //     if (ele === target) {
+    //         index = i;
+    //         break;
     //     } else {
-    //         let item = total.toString().split(""),
-    //             f = parseInt(item[1]),
-    //             s = parseInt(item[0]);[...(BigInt(num.join(""))+BigInt(k)).toString()]
-    //         res.unshift(f);
-    //         remi = s;
+    //         if (ele < target && nums[i + 1] && nums[i + 1] > target) {
+    //             index = i + 1;
+    //             break;
+    //         } else {
+    //             index = nums.length;
+    //         }
     //     }
-    //     if (i === 0 && remi) {
-    //         res.unshift(remi);
-    //     }
-    //     len -= 1;
     // }
-    // return res;
-    return (BigInt(num.join("")) + BigInt(k)).toString().split("").map(function (i) { return parseInt(i); });
+    // return index;
+    var left = 0, right = nums.length - 1;
+    while (left <= right) {
+        var mid = Math.floor(left + (right - left) / 2);
+        if (nums[mid] === target) {
+            return mid;
+        }
+        else if (nums[mid] < target) {
+            left = mid + 1;
+        }
+        else {
+            right = mid - 1;
+        }
+    }
+    return left;
 }
 ;
-console.log("addToArrayForm", addToArrayForm([1, 2, 6, 3, 0, 7, 1, 7, 1, 9, 7, 5, 6, 6, 4, 4, 0, 0, 6, 3], 516));
+console.log("searchInsert", searchInsert([1, 3, 5, 6], 2));
