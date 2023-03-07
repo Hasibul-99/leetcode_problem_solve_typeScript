@@ -1,16 +1,12 @@
-function search(nums, target) {
-    var left = 0, right = nums.length - 1;
-    while (left <= right) {
-        var mid = Math.floor((right + left) / 2);
-        if (nums[mid] === target)
-            return mid;
-        else if (nums[mid] > target)
-            right = mid - 1;
-        else
-            left = mid + 1;
+function findKthPositive(arr, k) {
+    var missArr = [];
+    for (var i = 1; i < (arr[arr.length - 1] || 0) + k + 1; i++) {
+        if (!arr.includes(i)) {
+            missArr.push(i);
+        }
     }
-    ;
-    return -1;
+    console.log("missArr", missArr);
+    return missArr[k - 1];
 }
 ;
-console.log("search", search([-1, 0, 3, 5, 9, 12], 9));
+console.log("findKthPositive", findKthPositive([2, 3, 4, 7, 11], 5));
