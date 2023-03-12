@@ -1,10 +1,13 @@
-function targetIndices(nums, target) {
-    var res = [], len = nums.length, sort = nums.sort(function (a, b) { return a - b; });
-    for (var i = 0; i < len; i++) {
-        if (target === sort[i])
-            res.push(i);
+function countNegatives(grid) {
+    var res = 0;
+    for (var i = 0; i < grid.length; i++) {
+        var arr = grid[i];
+        for (var j = 0; j < arr.length; j++) {
+            if (arr[j] < 0)
+                res++;
+        }
     }
     return res;
 }
 ;
-console.log("targetIndices", targetIndices([1, 2, 5, 2, 3], 2));
+console.log("countNegatives", countNegatives([[4, 3, 2, -1], [3, 2, 1, -1], [1, 1, -1, -2], [-1, -1, -2, -3]]));
