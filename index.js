@@ -1,12 +1,26 @@
-function findKthPositive(arr, k) {
-    var missArr = [];
-    for (var i = 1; i < (arr[arr.length - 1] || 0) + k + 1; i++) {
-        if (!arr.includes(i)) {
-            missArr.push(i);
+function minEatingSpeed(piles, h) {
+    var left = 1, right = Math.max.apply(Math, piles), ans = 0;
+    while (left <= right) {
+        var mid = Math.floor(left + (right - left) / 2);
+        var time = getTime(mid, piles);
+        if (time <= h) {
+            ans = mid;
+            right = mid - 1;
         }
+        else {
+            left = mid + 1;
+        }
+        console.log({ left: left, right: right, ans: ans, mid: mid });
     }
-    console.log("missArr", missArr);
-    return missArr[k - 1];
+    ;
+    return ans;
 }
 ;
-console.log("findKthPositive", findKthPositive([2, 3, 4, 7, 11], 5));
+var getTime = function (value, piles) {
+    var total = 0;
+    piles.forEach(function (item) {
+        total = total + Math.ceil(item / value);
+    });
+    return total;
+};
+console.log("minEatingSpeed", minEatingSpeed([30, 11, 23, 4, 20], 5));
