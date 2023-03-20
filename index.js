@@ -1,13 +1,12 @@
-function countNegatives(grid) {
-    var res = 0;
-    for (var i = 0; i < grid.length; i++) {
-        var arr = grid[i];
-        for (var j = 0; j < arr.length; j++) {
-            if (arr[j] < 0)
-                res++;
+function canPlaceFlowers(flowerbed, n) {
+    for (var i = 0; i < flowerbed.length && n !== 0; i++) {
+        // console.log("--", flowerbed[i]);
+        if (flowerbed[i] === 0 && !flowerbed[i - 1] && !flowerbed[i + 1]) {
+            n--;
+            i++;
         }
     }
-    return res;
+    return !n;
 }
 ;
-console.log("countNegatives", countNegatives([[4, 3, 2, -1], [3, 2, 1, -1], [1, 1, -1, -2], [-1, -1, -2, -3]]));
+console.log("canPlaceFlowers", canPlaceFlowers([1, 0, 0, 0, 1], 1));
