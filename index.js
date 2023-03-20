@@ -1,12 +1,18 @@
-function canPlaceFlowers(flowerbed, n) {
-    for (var i = 0; i < flowerbed.length && n !== 0; i++) {
-        // console.log("--", flowerbed[i]);
-        if (flowerbed[i] === 0 && !flowerbed[i - 1] && !flowerbed[i + 1]) {
-            n--;
-            i++;
+function isHappy(n) {
+    var arr = [];
+    while (n !== 1) {
+        if (arr.includes(n))
+            return false;
+        arr.push(n);
+        var srtA = n.toString().split("");
+        var total = 0;
+        for (var i = 0; i < srtA.length; i++) {
+            total = total + Math.pow(parseInt(srtA[i]), 2);
         }
+        n = total;
     }
-    return !n;
+    ;
+    return true;
 }
 ;
-console.log("canPlaceFlowers", canPlaceFlowers([1, 0, 0, 0, 1], 1));
+console.log("isHappy", isHappy(2));

@@ -1,15 +1,21 @@
-function canPlaceFlowers(flowerbed: number[], n: number): boolean {
+function isHappy(n: number): boolean {
+  let arr : number[] = [];
 
-  for (let i = 0; i < flowerbed.length && n !== 0; i++) {
-    // console.log("--", flowerbed[i]);
+  while (n !== 1) {
+    if (arr.includes(n)) return false;
+    arr.push(n);
 
-    if (flowerbed[i] === 0 && !flowerbed[i-1] && !flowerbed[i+1]) {
-      n--;
-      i++;
+    let srtA = n.toString().split("");
+    let total = 0;
+
+    for (let i = 0; i < srtA.length; i++) {
+      total = total + Math.pow(parseInt(srtA[i]), 2);
     }
-  }
 
-  return !n   
+    n = total;
+  };
+
+  return true;
 };
 
-console.log("canPlaceFlowers", canPlaceFlowers([1,0,0,0,1], 1));
+console.log("isHappy", isHappy(2));
