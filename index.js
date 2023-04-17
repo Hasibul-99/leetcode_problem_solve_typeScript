@@ -1,18 +1,14 @@
-function isHappy(n) {
-    var arr = [];
-    while (n !== 1) {
-        if (arr.includes(n))
-            return false;
-        arr.push(n);
-        var srtA = n.toString().split("");
-        var total = 0;
-        for (var i = 0; i < srtA.length; i++) {
-            total = total + Math.pow(parseInt(srtA[i]), 2);
+function rowAndMaximumOnes(mat) {
+    var res = [0, 0];
+    for (var i = 0; i < mat.length; i++) {
+        var ele = mat[i];
+        var con = ele.filter(function (q) { return q === 1; }).length;
+        var max = Math.max(con, res[1]);
+        if (max > res[1]) {
+            res = [i, max];
         }
-        n = total;
     }
-    ;
-    return true;
+    return res;
 }
 ;
-console.log("isHappy", isHappy(2));
+console.log("rowAndMaximumOnes", rowAndMaximumOnes([[0, 0], [1, 1], [0, 0]]));
