@@ -1,14 +1,9 @@
-function rowAndMaximumOnes(mat) {
-    var res = [0, 0];
-    for (var i = 0; i < mat.length; i++) {
-        var ele = mat[i];
-        var con = ele.filter(function (q) { return q === 1; }).length;
-        var max = Math.max(con, res[1]);
-        if (max > res[1]) {
-            res = [i, max];
-        }
+function mergeAlternately(word1, word2) {
+    var res = "", len = Math.max(word1.length, word2.length);
+    for (var i = 0; i < len; i++) {
+        res = res + (word1[i] || '') + (word2[i] || '');
     }
     return res;
 }
 ;
-console.log("rowAndMaximumOnes", rowAndMaximumOnes([[0, 0], [1, 1], [0, 0]]));
+console.log("mergeAlternately", mergeAlternately("abcd", "pq"));
