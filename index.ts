@@ -1,17 +1,6 @@
-function diagonalSum(mat: number[][]): number {
-    let total = 0;
+function map(arr: number[], fn: (n: number, i: number) => number): number[] {
 
-    for (let i = 0; i < mat.length; i++) {
-        total += mat[i][i];
-        total += mat[i][mat.length -1 - i];
-    }
-
-    if (mat.length%2 !== 0) {
-        let x = Math.floor(mat.length/2) 
-        total -= mat[x][x];
-    }
-
-    return total;
+    return arr.map((v, i) => fn(v, i))
 };
 
-console.log("diagonalSum", diagonalSum([[1,2,3], [4,5,6], [7,8,9]]));
+console.log("map", map([1,2,3], function plusone(n) { return n + 1; }));
