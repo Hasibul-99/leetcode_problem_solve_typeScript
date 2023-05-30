@@ -1,20 +1,23 @@
-function chunk(arr: any[], size: number): any[][] {
-    let res : any[][] = [];
-    let lan = arr.length,
-        start = 0,
-        end = size;
+type MultiDimensionalArray = (number | MultiDimensionalArray)[];
 
-    while(lan > 0) {
-        let val = arr.slice(start, end)
-        res.push(val);
+var flat = function (arr:  MultiDimensionalArray, n: number):  MultiDimensionalArray {
+    
+    if (n === 0) return arr;
 
-        start = end;
-        end = end + size;
-        lan = lan - size;
+    let res : MultiDimensionalArray = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        const el = arr[i];
+
+        if (n > 0 && Array.isArray(el)) {
+            // console.log("el", flat(el, n-1));
+            res.push(...flat(el, n-1))
+        } else {
+            res.push(el)
+        }
     }
 
     return res;
 };
 
-console.log("chunk", chunk([1,9,6,3,2], 1));
-
+console.log("flat", flat([1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]], 2));

@@ -1,14 +1,17 @@
-function chunk(arr, size) {
+var flat = function (arr, n) {
+    if (n === 0)
+        return arr;
     var res = [];
-    var lan = arr.length, start = 0, end = size;
-    while (lan > 0) {
-        var val = arr.slice(start, end);
-        res.push(val);
-        start = end;
-        end = end + size;
-        lan = lan - size;
+    for (var i = 0; i < arr.length; i++) {
+        var el = arr[i];
+        if (n > 0 && Array.isArray(el)) {
+            // console.log("el", flat(el, n-1));
+            res.push.apply(res, flat(el, n - 1));
+        }
+        else {
+            res.push(el);
+        }
     }
     return res;
-}
-;
-console.log("chunk", chunk([1, 9, 6, 3, 2], 1));
+};
+console.log("flat", flat([1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]], 2));
