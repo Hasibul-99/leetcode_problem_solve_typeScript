@@ -1,6 +1,20 @@
-function map(arr: number[], fn: (n: number, i: number) => number): number[] {
+function chunk(arr: any[], size: number): any[][] {
+    let res : any[][] = [];
+    let lan = arr.length,
+        start = 0,
+        end = size;
 
-    return arr.map((v, i) => fn(v, i))
+    while(lan > 0) {
+        let val = arr.slice(start, end)
+        res.push(val);
+
+        start = end;
+        end = end + size;
+        lan = lan - size;
+    }
+
+    return res;
 };
 
-console.log("map", map([1,2,3], function plusone(n) { return n + 1; }));
+console.log("chunk", chunk([1,9,6,3,2], 1));
+
