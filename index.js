@@ -1,5 +1,16 @@
-function map(arr, fn) {
-    return arr.map(function (v, i) { return fn(v, i); });
+function removeDuplicates(nums) {
+    var res = 0;
+    var n = nums[0];
+    for (var i = 0; i < nums.length; i++) {
+        if (nums[i] !== nums[i - 1]) {
+            nums[res] = nums[i];
+            res++;
+        }
+        else {
+            n = nums[i];
+        }
+    }
+    return res;
 }
 ;
-console.log("map", map([1, 2, 3], function plusone(n) { return n + 1; }));
+console.log("removeDuplicates", removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]));

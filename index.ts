@@ -1,6 +1,17 @@
-function map(arr: number[], fn: (n: number, i: number) => number): number[] {
+function removeDuplicates(nums: number[]): number {
+    let res : number = 0;
+    let n = nums[0];
 
-    return arr.map((v, i) => fn(v, i))
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] !== nums[i-1]) {
+            nums[res] = nums[i];
+            res++;
+        } else {   
+            n = nums[i];
+        }
+    }
+
+    return res;
 };
 
-console.log("map", map([1,2,3], function plusone(n) { return n + 1; }));
+console.log("removeDuplicates", removeDuplicates([0,0,1,1,1,2,2,3,3,4]));
