@@ -1,23 +1,19 @@
-type MultiDimensionalArray = (number | MultiDimensionalArray)[];
+function largestAltitude(gain: number[]): number {
 
-var flat = function (arr:  MultiDimensionalArray, n: number):  MultiDimensionalArray {
-    
-    if (n === 0) return arr;
+    let res = 0,
+        start = 0;
 
-    let res : MultiDimensionalArray = [];
-
-    for (let i = 0; i < arr.length; i++) {
-        const el = arr[i];
-
-        if (n > 0 && Array.isArray(el)) {
-            // console.log("el", flat(el, n-1));
-            res.push(...flat(el, n-1))
-        } else {
-            res.push(el)
-        }
+    for (let i = 0; i < gain.length; i++) {
+        const ele = start + gain[i];
+        
+        console.log({start, ele}, Math.max(ele, start));
+        
+        res = Math.max(ele, start, res)
+        start = ele; 
     }
 
-    return res;
+
+    return res > 0 ? res : 0;
 };
 
-console.log("flat", flat([1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]], 2));
+console.log("largestAltitude", largestAltitude([52,-91,72]));
