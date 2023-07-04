@@ -1,12 +1,12 @@
-function majorityElement(nums) {
-    var res = nums[0], obj = {}, max = 0;
+function singleNumber(nums) {
+    var obj = {};
     for (var i = 0; i < nums.length; i++) {
         obj[nums[i]] = (obj[nums[i]] || 0) + 1;
-        max = Math.max(obj[nums[i]], max);
-        var key = Object.keys(obj).find(function (key) { return obj[key] === max; }) || 0;
-        res = key * 1;
     }
-    return res;
+    for (var property in obj) {
+        if (obj[property] === 1)
+            return parseInt(property);
+    }
 }
 ;
-console.log("majorityElement", majorityElement([2, 2, 1, 1, 1, 2, 2]));
+console.log("singleNumber", singleNumber([0, 1, 0, 1, 0, 1, 99]));
