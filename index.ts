@@ -1,13 +1,18 @@
-function singleNumber(nums: number[]): number {
-    let obj: object = {}
+function removeDuplicates(nums: number[]): number {
+    let res : number = 0,
+        n = nums.length;
 
-    for (let i = 0; i < nums.length; i++) {
-        obj[nums[i]] = (obj[nums[i]] || 0) + 1;
+    for (let i = 0; i < n; i++) {
+        if ( nums[i] !== nums[res-2]) {
+            nums[res] = nums[i];
+            res++;
+
+            console.log(nums);
+            
+        }
     }
 
-    for (const property in obj) {
-        if (obj[property] === 1) return parseInt(property)
-    }
+    return res
 };
 
-console.log("singleNumber", singleNumber([0, 1, 0, 1, 0, 1, 99]));
+console.log("removeDuplicates", removeDuplicates([1,1,1,2,2,3]));
