@@ -1,18 +1,22 @@
-function removeDuplicates(nums: number[]): number {
-    let res : number = 0,
-        n = nums.length;
+function combine(n: number, k: number): number[][] {
+    let res: number[][] = [];
 
-    for (let i = 0; i < n; i++) {
-        if ( nums[i] !== nums[res-2]) {
-            nums[res] = nums[i];
-            res++;
-
-            console.log(nums);
-            
+    const backtracking = (start: number, arr: number[]) => {
+        if (arr.length === k) {
+            res.push([...arr]);
+            return
         }
+
+        if (start > n) return;
+
+        arr.push(start);
+        backtracking(start+1, arr);
+        arr.pop();
+        backtracking(start+1, arr);
     }
 
-    return res
+    backtracking(1, []);
+    return res;
 };
 
-console.log("removeDuplicates", removeDuplicates([1,1,1,2,2,3]));
+console.log("combine", combine(4, 2));
