@@ -1,28 +1,29 @@
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
+function letterCombinations(digits) {
+    if (digits.length === 0) {
+        return [];
     }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
-function combine(n, k) {
-    var res = [];
-    var backtracking = function (start, arr) {
-        if (arr.length === k) {
-            res.push(__spreadArray([], arr, true));
-            return;
-        }
-        if (start > n)
-            return;
-        arr.push(start);
-        backtracking(start + 1, arr);
-        arr.pop();
-        backtracking(start + 1, arr);
+    var mapping = {
+        "2": ["a", "b", "c"],
+        "3": ["d", "e", "f"],
+        "4": ["g", "h", "i"],
+        "5": ["j", "k", "l"],
+        "6": ["m", "n", "o"],
+        "7": ["p", "q", "r", "s"],
+        "8": ["t", "u", "v"],
+        "9": ["w", "x", "y", "z"]
     };
-    backtracking(1, []);
+    var res = mapping[digits[0]];
+    for (var i = 1; i < digits.length; i++) {
+        var temp = [];
+        for (var j = 0; j < res.length; j++) {
+            for (var _i = 0, _a = mapping[digits[i]]; _i < _a.length; _i++) {
+                var letter = _a[_i];
+                temp.push(res[j].concat(letter));
+            }
+        }
+        res = temp;
+    }
     return res;
 }
 ;
-console.log("combine", combine(4, 2));
+console.log("letterCombinations", letterCombinations("23"));
