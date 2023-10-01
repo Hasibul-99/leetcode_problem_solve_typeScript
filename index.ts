@@ -1,19 +1,14 @@
-function isMonotonic(nums: number[]): boolean {
-    let increasing = 1,
-        decreasing = 1;
+function reverseWords(s: string): string {
+    console.log(s.split(' '));
 
-    for (let i = 1; i < nums.length; i++) {
-        if (nums[i-1] >= nums[i]) {
-            increasing++;
-        } 
-        
-        if (nums[i-1] <= nums[i]) {
-            decreasing++;
-        }
-    }
+    let res : string = ''
+    
+    s.split(' ').forEach(item => {
+        res = res + item.split("").reverse().join('') + ' ';
+    });
 
-    if (increasing === nums.length || decreasing === nums.length) return true;
-    else return false;
+    return res.trim();
 };
 
-console.log("isMonotonic", isMonotonic([1,3,2]));
+
+console.log("reverseWords", reverseWords("Let's take LeetCode contest"));
