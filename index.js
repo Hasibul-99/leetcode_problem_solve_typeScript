@@ -1,10 +1,17 @@
-function reverseWords(s) {
-    console.log(s.split(' '));
-    var res = '';
-    s.split(' ').forEach(function (item) {
-        res = res + item.split("").reverse().join('') + ' ';
-    });
-    return res.trim();
+function winnerOfGame(colors) {
+    var ATotal = 0, Btotal = 0;
+    if (colors.length <= 2)
+        return false;
+    for (var i = 1; i < colors.length - 1; i++) {
+        if (colors[i - 1] === "A" && colors[i] === "A" && colors[i + 1] === "A") {
+            ATotal = ATotal + 1;
+        }
+        if (colors[i - 1] === "B" && colors[i] === "B" && colors[i + 1] === "B") {
+            Btotal = Btotal + 1;
+        }
+    }
+    ;
+    return ATotal > Btotal ? true : false;
 }
 ;
-console.log("reverseWords", reverseWords("Let's take LeetCode contest"));
+console.log(winnerOfGame("AAABABB"));

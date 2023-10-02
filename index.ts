@@ -1,14 +1,19 @@
-function reverseWords(s: string): string {
-    console.log(s.split(' '));
+function winnerOfGame(colors: string): boolean {
+    let ATotal = 0,
+        Btotal = 0;
+    if (colors.length <= 2) return false;
 
-    let res : string = ''
-    
-    s.split(' ').forEach(item => {
-        res = res + item.split("").reverse().join('') + ' ';
-    });
+    for (let i = 1; i < colors.length - 1; i++) {
+        if (colors[i - 1] === "A" && colors[i] === "A" && colors[i + 1] === "A") {
+            ATotal = ATotal + 1;
+        }
 
-    return res.trim();
+        if (colors[i - 1] === "B" && colors[i] === "B" && colors[i + 1] === "B") {
+            Btotal = Btotal + 1;
+        }
+    };
+
+    return ATotal > Btotal ? true : false;
 };
 
-
-console.log("reverseWords", reverseWords("Let's take LeetCode contest"));
+console.log(winnerOfGame("AAABABB"));
