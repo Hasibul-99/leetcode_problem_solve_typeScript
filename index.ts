@@ -1,17 +1,19 @@
-function removeDuplicates(nums: number[]): number {
-    let res : number = 0;
-    let n = nums[0];
+function fizzBuzz(n: number): string[] {
+    let srtArr: string[] = [];
 
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] !== nums[i-1]) {
-            nums[res] = nums[i];
-            res++;
-        } else {   
-            n = nums[i];
+    for (let i = 1; i <= n; i++) {
+        if (i%3 === 0 && i%5=== 0 ) {
+            srtArr.push("FizzBuzz")
+        } else if (i%3 === 0) {
+            srtArr.push("Fizz")
+        } else if (i%5 === 0) {
+            srtArr.push("Buzz")
+        } else {
+            srtArr.push(i.toString())
         }
-    }
+    };
 
-    return res;
+    return srtArr;
 };
 
-console.log("removeDuplicates", removeDuplicates([0,0,1,1,1,2,2,3,3,4]));
+console.log("fizzBuzz,", fizzBuzz(15))

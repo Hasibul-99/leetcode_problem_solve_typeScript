@@ -1,16 +1,21 @@
-function removeDuplicates(nums) {
-    var res = 0;
-    var n = nums[0];
-    for (var i = 0; i < nums.length; i++) {
-        if (nums[i] !== nums[i - 1]) {
-            nums[res] = nums[i];
-            res++;
+function fizzBuzz(n) {
+    var srtArr = [];
+    for (var i = 1; i <= n; i++) {
+        if (i % 3 === 0 && i % 5 === 0) {
+            srtArr.push("FizzBuzz");
+        }
+        else if (i % 3 === 0) {
+            srtArr.push("Fizz");
+        }
+        else if (i % 5 === 0) {
+            srtArr.push("Buzz");
         }
         else {
-            n = nums[i];
+            srtArr.push(i.toString());
         }
     }
-    return res;
+    ;
+    return srtArr;
 }
 ;
-console.log("removeDuplicates", removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]));
+console.log("fizzBuzz,", fizzBuzz(15));
