@@ -1,19 +1,15 @@
-function fizzBuzz(n: number): string[] {
-    let srtArr: string[] = [];
+function numIdenticalPairs(nums: number[]): number {
+    let res = 0;
 
-    for (let i = 1; i <= n; i++) {
-        if (i%3 === 0 && i%5=== 0 ) {
-            srtArr.push("FizzBuzz")
-        } else if (i%3 === 0) {
-            srtArr.push("Fizz")
-        } else if (i%5 === 0) {
-            srtArr.push("Buzz")
-        } else {
-            srtArr.push(i.toString())
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = nums.length; j >= 0; j--){
+            if (nums[i] === nums[j] && i <j ) {
+                res = res+1;
+            }
         }
-    };
+    }
 
-    return srtArr;
+    return res;
 };
 
-console.log("fizzBuzz,", fizzBuzz(15))
+console.log("numIdenticalPairs", numIdenticalPairs([1,1,1,1]));
