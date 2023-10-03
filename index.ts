@@ -1,15 +1,15 @@
-function numIdenticalPairs(nums: number[]): number {
+function reverse(x: number): number {
+    if (x > 2147483647 || x < -2147483648) return 0;
+    
     let res = 0;
 
-    for (let i = 0; i < nums.length; i++) {
-        for (let j = nums.length; j >= 0; j--){
-            if (nums[i] === nums[j] && i <j ) {
-                res = res+1;
-            }
-        }
+    while (x != 0) {
+        let lastDigit = x % 10;
+        res = res * 10 + lastDigit;
+        x = parseInt((x / 10).toString());
     }
 
-    return res;
+    return (res > 2147483647 || res < -2147483648) ? 0 : res;
 };
 
-console.log("numIdenticalPairs", numIdenticalPairs([1,1,1,1]));
+console.log("reverse", reverse(1534236469));
