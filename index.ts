@@ -1,18 +1,16 @@
-function majorityElement(nums: number[]): number[] {
-    let obj: any = {};
+function searchRange(nums: number[], target: number): number[] {
+    let res : number[] = [-1, -1];
 
     for (let i = 0; i < nums.length; i++) {
-        obj[nums[i]] = (obj[nums[i]] || 0) + 1;
-    }
-
-    let res: number[] = [];
-    for (const n in obj) {
-        if ((nums.length / 3) < obj[n]) {
-            res.push(parseInt(n))
+        if (nums[i] === target) {
+            if (res[0] === -1) res[0] = i;
+            res[1] = i;
+        } else if (nums[i] > target) {
+            break;
         }
-    };
+    }
 
     return res;
 };
 
-console.log("majorityElement", majorityElement([3, 2, 3]));
+console.log("searchRange", searchRange([5,7,7,8,8,10], 8));
