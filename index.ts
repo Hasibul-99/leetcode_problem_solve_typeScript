@@ -1,16 +1,15 @@
-function searchRange(nums: number[], target: number): number[] {
-    let res : number[] = [-1, -1];
+function differenceOfSums(n: number, m: number): number {
+    let res : number = 0;
 
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] === target) {
-            if (res[0] === -1) res[0] = i;
-            res[1] = i;
-        } else if (nums[i] > target) {
-            break;
+    for (let i = 1; i <= n; i++) {
+        if (i % m === 0) {
+            res = res - i;
+        } else {
+            res = res + i;
         }
     }
 
     return res;
 };
 
-console.log("searchRange", searchRange([5,7,7,8,8,10], 8));
+console.log('hello', differenceOfSums(5, 1));
