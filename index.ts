@@ -1,15 +1,22 @@
-function differenceOfSums(n: number, m: number): number {
-    let res : number = 0;
+function backspaceCompare(s: string, t: string): boolean {
+    let st1 = "",
+        st2 = "";
 
-    for (let i = 1; i <= n; i++) {
-        if (i % m === 0) {
-            res = res - i;
+    for (let i = 0; i < Math.max(s.length, t.length); i++) {
+        if (s[i] === "#") {
+           st1 = st1.slice(0, -1);
         } else {
-            res = res + i;
+            st1 = st1 + (s[i] || '');
+        }
+
+        if (t[i] === "#") {
+            st2 = st2.slice(0, -1);
+        } else {
+            st2 = st2 + (t[i] || '');
         }
     }
-
-    return res;
+    
+    return st1 === st2;
 };
 
-console.log('hello', differenceOfSums(5, 1));
+console.log("backspaceCompare", backspaceCompare("xywrrmp", "xywrrmu#p"));
