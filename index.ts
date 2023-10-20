@@ -1,22 +1,71 @@
-function backspaceCompare(s: string, t: string): boolean {
-    let st1 = "",
-        st2 = "";
+/**
+ * // This is the interface that allows for creating nested lists.
+ * // You should not implement it, or speculate about its implementation
+ * class NestedInteger {
+ *     If value is provided, then it holds a single integer
+ *     Otherwise it holds an empty nested list
+ *     constructor(value?: number) {
+ *         ...
+ *     };
+ *
+ *     Return true if this NestedInteger holds a single integer, rather than a nested list.
+ *     isInteger(): boolean {
+ *         ...
+ *     };
+ *
+ *     Return the single integer that this NestedInteger holds, if it holds a single integer
+ *     Return null if this NestedInteger holds a nested list
+ *     getInteger(): number | null {
+ *         ...
+ *     };
+ *
+ *     Set this NestedInteger to hold a single integer equal to value.
+ *     setInteger(value: number) {
+ *         ...
+ *     };
+ *
+ *     Set this NestedInteger to hold a nested list and adds a nested integer elem to it.
+ *     add(elem: NestedInteger) {
+ *         ...
+ *     };
+ *
+ *     Return the nested list that this NestedInteger holds,
+ *     or an empty list if this NestedInteger holds a single integer
+ *     getList(): NestedInteger[] {
+ *         ...
+ *     };
+ * };
+ */
 
-    for (let i = 0; i < Math.max(s.length, t.length); i++) {
-        if (s[i] === "#") {
-           st1 = st1.slice(0, -1);
-        } else {
-            st1 = st1 + (s[i] || '');
-        }
+class NestedIterator {
+    private flattendList: number[] = [];
 
-        if (t[i] === "#") {
-            st2 = st2.slice(0, -1);
-        } else {
-            st2 = st2 + (t[i] || '');
+    private initList(nestedList: NestedInteger[]) {
+        for (let num of nestedList) {
+            if (num.isInteger()) {
+                this.flattendList.push(num.getInteger())
+            } else {
+                this.initList(num.getList());
+            }
         }
+    };
+
+    constructor(nestedList: NestedInteger[]) {
+		this.initList(nestedList);
     }
-    
-    return st1 === st2;
-};
 
-console.log("backspaceCompare", backspaceCompare("xywrrmp", "xywrrmu#p"));
+    hasNext(): boolean {
+		return !!this.flattendList.length;
+    }
+
+	next(): number {
+		return this.flattendList.shift();
+    }
+}
+
+/**
+ * Your ParkingSystem object will be instantiated and called as such:
+ * var obj = new NestedIterator(nestedList)
+ * var a: number[] = []
+ * while (obj.hasNext()) a.push(obj.next());
+ */
