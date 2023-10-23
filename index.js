@@ -1,20 +1,10 @@
-function backspaceCompare(s, t) {
-    var st1 = "", st2 = "";
-    for (var i = 0; i < Math.max(s.length, t.length); i++) {
-        if (s[i] === "#") {
-            st1 = st1.slice(0, -1);
-        }
-        else {
-            st1 = st1 + (s[i] || '');
-        }
-        if (t[i] === "#") {
-            st2 = st2.slice(0, -1);
-        }
-        else {
-            st2 = st2 + (t[i] || '');
-        }
+function isPowerOfTwo(n) {
+    var i = 1;
+    while (i < n) {
+        i = i * 2;
     }
-    return st1 === st2;
+    console.log(i);
+    return i === n;
 }
 ;
-console.log("backspaceCompare", backspaceCompare("xywrrmp", "xywrrmu#p"));
+console.log("isPowerOfTwo", isPowerOfTwo(159));
