@@ -1,10 +1,11 @@
-function isPowerOfTwo(n) {
-    var i = 1;
-    while (i < n) {
-        i = i * 2;
+function largestGoodInteger(num) {
+    var res = -1;
+    for (var i = 2; i < num.length; i++) {
+        if (num[i] === num[i - 1] && num[i] === num[i - 2]) {
+            res = Math.max(Number(num[i]), res);
+        }
     }
-    console.log(i);
-    return i === n;
+    return res === -1 ? "" : String(res).repeat(3);
 }
 ;
-console.log("isPowerOfTwo", isPowerOfTwo(159));
+console.log("largestGoodInteger", largestGoodInteger("6777133339"));
