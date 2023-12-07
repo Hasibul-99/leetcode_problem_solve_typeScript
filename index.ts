@@ -1,11 +1,14 @@
-function singleNumber(nums: number[]): number {
-    let obj: any = {};
+function largestOddNumber(num: string): string {
+    let oddIdx: number = -1;
 
-    for (let i = 0; i < nums.length; i++) {
-        obj[nums[i]] = (obj[nums[i]] || 0) + 1;
-    };
+    for (let i = num.length - 1; i >= 0; i--) {
+        if ( Number(num[i])%2 === 1) {
+            oddIdx = i;
+            break;
+        };
+    }
 
-    return Number(Object.keys(obj).find(k=>obj[k]===1));
+    return oddIdx === -1 ? "" : num.slice(0, oddIdx + 1);
 };
 
-console.log("singleNumber, ", singleNumber([4,1,2,1,2]));
+console.log("largestOddNumber", largestOddNumber("4206"));

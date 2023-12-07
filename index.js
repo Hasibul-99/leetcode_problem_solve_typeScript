@@ -1,10 +1,13 @@
-function singleNumber(nums) {
-    var obj = {};
-    for (var i = 0; i < nums.length; i++) {
-        obj[nums[i]] = (obj[nums[i]] || 0) + 1;
+function largestOddNumber(num) {
+    var oddIdx = -1;
+    for (var i = num.length - 1; i >= 0; i--) {
+        if (Number(num[i]) % 2 === 1) {
+            oddIdx = i;
+            break;
+        }
+        ;
     }
-    ;
-    return Number(Object.keys(obj).find(function (k) { return obj[k] === 1; }));
+    return oddIdx === -1 ? "" : num.slice(0, oddIdx + 1);
 }
 ;
-console.log("singleNumber, ", singleNumber([4, 1, 2, 1, 2]));
+console.log("largestOddNumber", largestOddNumber("4206"));
