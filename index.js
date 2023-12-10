@@ -1,13 +1,13 @@
-function largestOddNumber(num) {
-    var oddIdx = -1;
-    for (var i = num.length - 1; i >= 0; i--) {
-        if (Number(num[i]) % 2 === 1) {
-            oddIdx = i;
-            break;
+function transpose(matrix) {
+    var res = [];
+    for (var i = 0; i < matrix[0].length; i++) {
+        var arr = [];
+        for (var j = 0; j < matrix.length; j++) {
+            arr.push(matrix[j][i]);
         }
-        ;
+        res.push(arr);
     }
-    return oddIdx === -1 ? "" : num.slice(0, oddIdx + 1);
+    return res;
 }
 ;
-console.log("largestOddNumber", largestOddNumber("4206"));
+console.log("transpose", transpose([[1, 2, 3], [4, 5, 6]]));
