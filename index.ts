@@ -1,16 +1,15 @@
-function transpose(matrix: number[][]): number[][] {   
-    let res : number[][] = [];
+function findSpecialInteger(arr: number[]): number {
+    let unique = arr.filter((x, i, a) => a.indexOf(x) === i),
+        res: number = 0; 
 
-    for (let i = 0; i < matrix[0].length; i++) {
-        let arr: number[] = [];
-
-        for (let j = 0; j < matrix.length; j++) {
-            arr.push(matrix[j][i]);
+    for (let i = 0; i < unique.length; i++) {
+        if (((arr.filter(a => a === unique[i]).length * 100) / arr.length) > 25) {
+            res = unique[i];
+            break;
         }
-        res.push(arr);
     }
 
     return res;
 };
 
-console.log("transpose", transpose([[1,2,3],[4,5,6]]));
+console.log("findSpecialInteger", findSpecialInteger([1,2,3,3]));

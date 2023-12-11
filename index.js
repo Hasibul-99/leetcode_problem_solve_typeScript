@@ -1,13 +1,17 @@
-function transpose(matrix) {
-    var res = [];
-    for (var i = 0; i < matrix[0].length; i++) {
-        var arr = [];
-        for (var j = 0; j < matrix.length; j++) {
-            arr.push(matrix[j][i]);
+function findSpecialInteger(arr) {
+    var unique = arr.filter(function (x, i, a) { return a.indexOf(x) === i; }), res = 0;
+    var _loop_1 = function (i) {
+        if (((arr.filter(function (a) { return a === unique[i]; }).length * 100) / arr.length) > 25) {
+            res = unique[i];
+            return "break";
         }
-        res.push(arr);
+    };
+    for (var i = 0; i < unique.length; i++) {
+        var state_1 = _loop_1(i);
+        if (state_1 === "break")
+            break;
     }
     return res;
 }
 ;
-console.log("transpose", transpose([[1, 2, 3], [4, 5, 6]]));
+console.log("findSpecialInteger", findSpecialInteger([1, 2, 3, 3]));
