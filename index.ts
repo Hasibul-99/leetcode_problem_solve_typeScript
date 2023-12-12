@@ -1,16 +1,13 @@
-function transpose(matrix: number[][]): number[][] {   
-    let res : number[][] = [];
+function maxProduct(nums: number[]): number {
+    let res: number = 0;
 
-    for (let i = 0; i < matrix[0].length; i++) {
-        let arr: number[] = [];
-
-        for (let j = 0; j < matrix.length; j++) {
-            arr.push(matrix[j][i]);
+    for (let i = 0; i < nums.length - 1; i++) {
+        for (let j = i + 1; j < nums.length; j++) {
+            res = Math.max((nums[i]-1)*(nums[j]-1), res);
         }
-        res.push(arr);
     }
 
     return res;
 };
 
-console.log("transpose", transpose([[1,2,3],[4,5,6]]));
+console.log("maxProduct", maxProduct([1,5,4,5]));
