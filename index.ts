@@ -1,13 +1,11 @@
-function maxProduct(nums: number[]): number {
-    let res: number = 0;
+function buyChoco(prices: number[], money: number): number {
+    let sort = prices.sort((a,b) => a -b);
 
-    for (let i = 0; i < nums.length - 1; i++) {
-        for (let j = i + 1; j < nums.length; j++) {
-            res = Math.max((nums[i]-1)*(nums[j]-1), res);
-        }
-    }
+    let totalBuy = sort[0] + sort[1];
 
-    return res;
+    let mon = money - totalBuy;
+
+    return mon < 0 ? money : mon;
 };
 
-console.log("maxProduct", maxProduct([1,5,4,5]));
+console.log("buyChoco", buyChoco([3,2,3], 3));
