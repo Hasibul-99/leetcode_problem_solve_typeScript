@@ -1,11 +1,15 @@
-function buyChoco(prices: number[], money: number): number {
-    let sort = prices.sort((a,b) => a -b);
+function maxWidthOfVerticalArea(points: number[][]): number {
+    let xPoint = points.map(point => point[0]).sort((a, b) => a - b);
 
-    let totalBuy = sort[0] + sort[1];
+    console.log(xPoint);
 
-    let mon = money - totalBuy;
+    let res: number = 0
+    
+    for (let i = 1; i < xPoint.length; i++) {
+        res = Math.max(res, (xPoint[i] - xPoint[i -1]))
+    }
 
-    return mon < 0 ? money : mon;
+    return res;
 };
 
-console.log("buyChoco", buyChoco([3,2,3], 3));
+console.log("maxWidthOfVerticalArea", maxWidthOfVerticalArea([[3,1],[9,0],[1,0],[1,4],[5,3],[8,8]]));
