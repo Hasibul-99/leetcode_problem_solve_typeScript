@@ -23,4 +23,4 @@ function minCost(colors, neededTime) {
     return res;
 }
 ;
-console.log("minCost", minCost("aaaaaaaaaaaaaa", [1, 3, 6, 5, 4, 5, 4, 4, 2, 8, 3, 10, 6, 6]));
+console.log("minCost", minCost("aaaaaaaaaaaaa", [1, 3, 6, 5, 4, 5, 4, 4, 2, 8, 3, 10, 6, 6]));
