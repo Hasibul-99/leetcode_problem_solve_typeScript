@@ -1,26 +1,22 @@
-function minCost(colors, neededTime) {
-    var res = 0;
-    var num = [];
-    var arr = [neededTime[0]];
-    for (var i = 1; i < colors.length; i++) {
-        if (colors[i - 1] === colors[i]) {
-            arr.push(neededTime[i]);
-        }
-        else {
-            num.push(arr);
-            arr = [neededTime[i]];
-        }
+function findMatrix(nums) {
+    var obj = {};
+    for (var i = 0; i < nums.length; i++) {
+        obj[nums[i]] = (obj[nums[i]] || 0) + 1;
     }
-    num.push(arr);
-    for (var i = 0; i < num.length; i++) {
-        if (num[i].length > 1) {
-            var maxIndex = num[i].indexOf(Math.max.apply(Math, num[i]));
-            console.log("maxIndex", maxIndex);
-            num[i].splice(maxIndex, 1);
-            res = res + num[i].reduce(function (sum, num) { return sum + num; }, 0);
+    var max = Math.max.apply(Math, Object.keys(obj).map(function (key) { return obj[key]; }));
+    var res = [];
+    for (var i = 0; i <= max; i++) {
+        var arr = [];
+        for (var j in obj) {
+            if (obj[j] !== 0) {
+                arr.push(Number(j));
+                obj[j] -= 1;
+            }
         }
+        if (arr.length)
+            res.push(arr);
     }
     return res;
 }
 ;
-console.log("minCost", minCost("aaaaaaaaaaaaa", [1, 3, 6, 5, 4, 5, 4, 4, 2, 8, 3, 10, 6, 6]));
+console.log("findMatrix", findMatrix([1, 3, 4, 1, 2, 3, 1]));
