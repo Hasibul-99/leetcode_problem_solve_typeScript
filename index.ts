@@ -1,27 +1,21 @@
-function findMatrix(nums: number[]): number[][] {
-    let obj: any = {};
+function findWinners(matches: number[][]): number[][] {
+    let obj: any = {},
+        res: number[][] = [[], []];
 
-    for (let i = 0; i < nums.length; i++) {
-        obj[nums[i]] = (obj[nums[i]] || 0) + 1;
+    for (let i = 0; i < matches.length; i++) {
+        let win = matches[i][0],
+            loss = matches[i][1];
+            
+        obj[win] = (obj[win] || 0) + 0;
+        obj[loss] = (obj[loss] || 0) + 1;
     }
 
-    let max = Math.max(...Object.keys( obj ).map(function ( key ) { return obj[key]; }));
-
-    let res : number[][] = [];
-    for (let i = 0; i <= max; i++) {
-        let arr: number[] = [];
-
-        for (const j in obj) {
-            if (obj[j] !== 0) {
-                arr.push(Number(j));
-                obj[j] -= 1;
-            }
-        }
-
-        if (arr.length) res.push(arr);
+    for (const property in obj) {
+        if (obj[property] === 0) res[0].push(Number(property));
+        if (obj[property] === 1) res[1].push(Number(property));
     }
 
     return res;
 };
 
-console.log("findMatrix", findMatrix([1,3,4,1,2,3,1]));
+console.log("findWinners",findWinners([[1,3],[2,3],[3,6],[5,6],[5,7],[4,5],[4,8],[4,9],[10,4],[10,9]]));
