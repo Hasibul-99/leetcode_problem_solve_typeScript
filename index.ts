@@ -1,18 +1,20 @@
-function findErrorNums(nums: number[]): number[] {
-    let dup = -1,
-        miss = -1;
+function firstUniqChar(s: string): number {
+    let res: number = -1;
 
-    for (let i = 1; i <= nums.length; i++) {
-        let count = nums.filter(num => num === i).length;
+    if (s.length === 1) return 0;
+    for (let i = 1; i < s.length + 1; i++) {
+        let arr = s.slice(i, s.length);
+        let arr2 = s.slice(0, i -1);
 
-        if (count === 2) {
-            dup = i;
-        } else if (count === 0) {
-            miss = i;
+        console.log(s[i-1], arr.includes(s[i-1]), arr2.includes(s[i-1]));
+        
+        if (!arr.includes(s[i-1]) && !arr2.includes(s[i-1])) {
+            res = i-1;
+            break;
         }
     }
 
-    return [dup, miss];
+    return res;
 };
 
-console.log("findErrorNums", findErrorNums([1,1]));
+console.log("firstUniqChar", firstUniqChar("dddccdbba"));
