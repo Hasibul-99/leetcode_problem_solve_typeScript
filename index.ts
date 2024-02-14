@@ -1,15 +1,21 @@
-function firstPalindrome(words: string[]): string {
-    
-    let res: string = '';
-
-    for (let i = 0; i < words.length; i++) {
-        if (words[i].split('').reverse().join('') === words[i]) {
-            res = words[i];
-            break;
+function rearrangeArray(nums: number[]): number[] {
+    let pos: number[] = [],
+        neg: number[] = [],
+        res: number[] = [];
+        
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] >= 0) {
+            pos.push(nums[i]);
+        } else {
+            neg.push(nums[i]);
         }
+    }
+
+    for (let i = 0; i < pos.length; i++) {
+        res.push(...[pos[i], neg[i]]);
     }
 
     return res;
 };
 
-console.log("firstPalindrome", firstPalindrome(["abc","car","ada","racecar","cool"]));
+console.log("rearrangeArray", rearrangeArray([-1,1]));
