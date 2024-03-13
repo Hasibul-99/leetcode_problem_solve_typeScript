@@ -1,17 +1,17 @@
-function rearrangeArray(nums) {
-    var pos = [], neg = [], res = [];
-    for (var i = 0; i < nums.length; i++) {
-        if (nums[i] >= 0) {
-            pos.push(nums[i]);
-        }
-        else {
-            neg.push(nums[i]);
+function pivotInteger(n) {
+    var getSum = function (x) {
+        return (x * (x + 1)) / 2;
+    };
+    var ans = -1;
+    for (var i = 1; i <= n; i++) {
+        var sum1 = getSum(i);
+        var sum2 = getSum(n) - getSum(i - 1);
+        if (sum1 === sum2) {
+            ans = i;
+            break;
         }
     }
-    for (var i = 0; i < pos.length; i++) {
-        res.push.apply(res, [pos[i], neg[i]]);
-    }
-    return res;
+    return ans;
 }
 ;
-console.log("rearrangeArray", rearrangeArray([-1, 1]));
+console.log("pivotInteger", pivotInteger(8));

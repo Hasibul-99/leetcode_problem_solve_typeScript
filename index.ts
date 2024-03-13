@@ -1,21 +1,20 @@
-function rearrangeArray(nums: number[]): number[] {
-    let pos: number[] = [],
-        neg: number[] = [],
-        res: number[] = [];
-        
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] >= 0) {
-            pos.push(nums[i]);
-        } else {
-            neg.push(nums[i]);
+function pivotInteger(n: number): number {
+    const getSum = (x: number) => {
+        return (x*(x+1))/2;
+    };
+
+    let ans = -1;
+    for (let i = 1; i <= n; i++) {
+        let sum1 = getSum(i);
+        let sum2 = getSum(n) - getSum(i-1);
+
+        if (sum1 === sum2) {
+            ans = i;
+            break;
         }
     }
 
-    for (let i = 0; i < pos.length; i++) {
-        res.push(...[pos[i], neg[i]]);
-    }
-
-    return res;
+    return ans;
 };
 
-console.log("rearrangeArray", rearrangeArray([-1,1]));
+console.log("pivotInteger",pivotInteger(8));
