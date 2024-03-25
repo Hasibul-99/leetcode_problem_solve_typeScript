@@ -1,17 +1,14 @@
-function pivotInteger(n) {
-    var getSum = function (x) {
-        return (x * (x + 1)) / 2;
-    };
-    var ans = -1;
-    for (var i = 1; i <= n; i++) {
-        var sum1 = getSum(i);
-        var sum2 = getSum(n) - getSum(i - 1);
-        if (sum1 === sum2) {
-            ans = i;
-            break;
+function findDuplicates(nums) {
+    var res = [], obj = {};
+    for (var i = 0; i < nums.length; i++) {
+        if (obj[nums[i]]) {
+            res.push(nums[i]);
+        }
+        else {
+            obj[nums[i]] = (obj[nums[i]] || 0) + 1;
         }
     }
-    return ans;
+    return res;
 }
 ;
-console.log("pivotInteger", pivotInteger(8));
+console.log("findDuplicates", findDuplicates([4, 3, 2, 7, 8, 2, 3, 1]));
