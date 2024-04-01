@@ -1,14 +1,15 @@
-function findDuplicates(nums) {
-    var res = [], obj = {};
-    for (var i = 0; i < nums.length; i++) {
-        if (obj[nums[i]]) {
-            res.push(nums[i]);
+function lengthOfLastWord(s) {
+    var trim = s.trim();
+    var res = 0;
+    for (var i = trim.length - 1; i >= 0; i--) {
+        if (trim[i] === ' ') {
+            break;
         }
         else {
-            obj[nums[i]] = (obj[nums[i]] || 0) + 1;
+            res = res + 1;
         }
     }
     return res;
 }
 ;
-console.log("findDuplicates", findDuplicates([4, 3, 2, 7, 8, 2, 3, 1]));
+console.log("lengthOfLastWord", lengthOfLastWord("   fly me   to   the moon  "));

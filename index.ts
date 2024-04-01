@@ -1,16 +1,16 @@
-function findDuplicates(nums: number[]): number[] {
-    let res: number[] = [],
-        obj = {};
+function lengthOfLastWord(s: string): number {
+    let trim = s.trim();
+    let res = 0;
 
-    for (let i = 0; i < nums.length; i++) {
-        if (obj[nums[i]]) {
-            res.push(nums[i])
+    for (let i = trim.length-1; i >= 0; i--) {
+        if (trim[i] === ' ') {
+            break;
         } else {
-            obj[nums[i]] = (obj[nums[i]] || 0) + 1;
+            res = res + 1;
         }
     }
 
     return res;
 };
 
-console.log("findDuplicates",findDuplicates([4,3,2,7,8,2,3,1]));
+console.log("lengthOfLastWord", lengthOfLastWord("   fly me   to   the moon  "));
