@@ -1,16 +1,22 @@
-function lengthOfLastWord(s: string): number {
-    let trim = s.trim();
-    let res = 0;
+function countStudents(students: number[], sandwiches: number[]): number {
+    let res = students.length;
 
-    for (let i = trim.length-1; i >= 0; i--) {
-        if (trim[i] === ' ') {
-            break;
-        } else {
-            res = res + 1;
-        }
+    let cnt: any = {};
+
+    for (let i = 0; i < students.length; i++) {
+        cnt[students[i]] = (cnt[students[i]] || 0) + 1;
     }
 
+    for (let j = 0; j < sandwiches.length; j++) {
+        if (cnt[sandwiches[j]] > 0) {
+            res -= 1;
+            cnt[sandwiches[j]] -=1;
+        } else {
+            return res;
+        }
+    }
+    
     return res;
 };
 
-console.log("lengthOfLastWord", lengthOfLastWord("   fly me   to   the moon  "));
+console.log("countStudents", countStudents([1,1,1,0,0,1], [1,0,0,0,1,1]));
