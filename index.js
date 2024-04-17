@@ -1,19 +1,28 @@
-function countStudents(students, sandwiches) {
-    var res = students.length;
-    var cnt = {};
-    for (var i = 0; i < students.length; i++) {
-        cnt[students[i]] = (cnt[students[i]] || 0) + 1;
-    }
-    for (var j = 0; j < sandwiches.length; j++) {
-        if (cnt[sandwiches[j]] > 0) {
-            res -= 1;
-            cnt[sandwiches[j]] -= 1;
+function search(nums, target) {
+    var left = 0, right = nums.length - 1, mid;
+    while (left <= right) {
+        mid = Math.floor((left + right) / 2);
+        if (nums[mid] === target) {
+            return mid;
+        }
+        else if (nums[left] <= nums[mid]) {
+            if (target > nums[mid] || target < nums[left]) {
+                left = mid + 1;
+            }
+            else {
+                right = mid - 1;
+            }
         }
         else {
-            return res;
+            if (target < nums[mid] || target > nums[right]) {
+                right = mid - 1;
+            }
+            else {
+                left = mid + 1;
+            }
         }
     }
-    return res;
+    return -1;
 }
 ;
-console.log("countStudents", countStudents([1, 1, 1, 0, 0, 1], [1, 0, 0, 0, 1, 1]));
+console.log("search", search([4, 5, 6, 7, 0, 1, 2], 0));
