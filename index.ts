@@ -1,15 +1,18 @@
-function relativeSortArray(arr1: number[], arr2: number[]): number[] {
-    let arr: number[] = [];
+function minMovesToSeat(seats: number[], students: number[]): number {
+    const s: number[] = seats.sort((a, b) => a - b);
+    const st: number[] = students.sort((a, b) => a - b);
+    let res: number = 0;
 
-    var notMatch = arr1.filter(function(item) {
-        return !arr2.includes(item);
-      }).sort((a,b) => a -b)
-    arr2.forEach(i => {
-        let values = arr1.filter(d => d === i);
-        arr = arr.concat(values);
-    })
+    // Determine the number of iterations based on the minimum of seats and students
+    const iterations = Math.min(s.length, st.length);
 
-    return arr.concat(notMatch);
+    for (let i = 0; i < iterations; i++) {
+        res += Math.abs(s[i] - st[i]);
+    }
+
+    return res;
 };
 
-console.log("relativeSortArray", relativeSortArray([2,3,1,3,2,4,6,7,9,2,19], [2,1,4,3,9,6]));
+console.log('====================================');
+console.log(minMovesToSeat([12,14,19,19,12], [19,2,17,20,7]));
+console.log('====================================');
