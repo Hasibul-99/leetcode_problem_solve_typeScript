@@ -1,19 +1,25 @@
-function countSeniors(details: string[]): number {
-    let res: number = 0,
-        maxAge: number = 0;
-    
-    for (let i = 0; i < details.length; i++) {
-        const age = parseInt(details[i].slice(11, 13));
-        if (age > 60) {
-            res++;
+function minExtraChar(s: string, dictionary: string[]): number {
+    let n = s.length,
+        dp: number[] = Array(n + 1).fill(0).map((_, i) => i);
+
+    for (let i = 0; i < n; i++) {
+        // Check each word in the dictionary
+        for (let word of dictionary) {
+            let wl = word.length;
+            // If the word fits in the current substring
+
+            if (i + wl <= n && s.substring(i, i + wl) === word) {
+                dp[i + wl] = Math.min(dp[i + wl], dp[i])
+            }
         }
+
+        // Increment the count of extra characters
+        dp[i + 1] = Math.min(dp[i + 1], dp[i] + 1);
     }
 
-    return res;
+
+    return dp[n]
+
 };
 
-console.log('====================================');
-console.log("countSeniors", countSeniors(["5612624052M0130","5378802576M6424","5447619845F0171","2941701174O9078"]));
-console.log('====================================');
-
-// 7868190130 M 75 22
+console.log("minExtraChar", minExtraChar("leetscode", ["leet", "code", "leetcode"]));
