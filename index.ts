@@ -1,25 +1,18 @@
-function minExtraChar(s: string, dictionary: string[]): number {
-    let n = s.length,
-        dp: number[] = Array(n + 1).fill(0).map((_, i) => i);
+function minimumSteps(s: string): number {
+    let step: number = 0,
+        count1 = 0;
 
-    for (let i = 0; i < n; i++) {
-        // Check each word in the dictionary
-        for (let word of dictionary) {
-            let wl = word.length;
-            // If the word fits in the current substring
-
-            if (i + wl <= n && s.substring(i, i + wl) === word) {
-                dp[i + wl] = Math.min(dp[i + wl], dp[i])
-            }
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] === '1') {
+            count1++;
+        } else {
+            console.log('count1',count1);
+            
+            step += count1;
         }
-
-        // Increment the count of extra characters
-        dp[i + 1] = Math.min(dp[i + 1], dp[i] + 1);
     }
 
-
-    return dp[n]
-
+    return step;
 };
 
-console.log("minExtraChar", minExtraChar("leetscode", ["leet", "code", "leetcode"]));
+console.log("minimumSteps",minimumSteps("100"));
