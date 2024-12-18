@@ -1,15 +1,13 @@
-function minimumSteps(s) {
-    var step = 0, count1 = 0;
-    for (var i = 0; i < s.length; i++) {
-        if (s[i] === '1') {
-            count1++;
-        }
-        else {
-            console.log('count1', count1);
-            step += count1;
+function finalPrices(prices) {
+    for (var i = 0; i < prices.length; i++) {
+        for (var j = i + 1; j < prices.length; j++) {
+            if (prices[j] <= prices[i]) {
+                prices[i] -= prices[j];
+                break;
+            }
         }
     }
-    return step;
+    return prices;
 }
 ;
-console.log("minimumSteps", minimumSteps("100"));
+console.log("finalPrices", finalPrices([8, 4, 6, 2, 3]));
