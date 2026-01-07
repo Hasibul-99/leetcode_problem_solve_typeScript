@@ -1,5 +1,9 @@
-function containsDuplicate(nums: number[]): boolean {
-    return new Set(nums).size !== nums.length
+function isAnagram(s: string, t: string): boolean {
+    let a = s.split(''),
+        b = t.split('');
+
+    return a.sort().join('') === b.sort().join('');
 };
 
-console.log("containsDuplicate", containsDuplicate([1,2,3,4]));
+console.log("containsDuplicate", isAnagram("rat", "car"));
+
