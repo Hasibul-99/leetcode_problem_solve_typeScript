@@ -1,9 +1,16 @@
-function isAnagram(s: string, t: string): boolean {
-    let a = s.split(''),
-        b = t.split('');
+function twoSum(nums: number[], target: number): number[] {
+    let arr : number[] = [];
 
-    return a.sort().join('') === b.sort().join('');
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = i + 1; j < nums.length; j++) {
+            if (nums[i] + nums[j] === target) {
+                arr.push(i, j);
+            }
+        }
+    }
+
+    return arr;
 };
 
-console.log("containsDuplicate", isAnagram("rat", "car"));
+console.log("containsDuplicate", twoSum([2,7,11,15], 9));
 
