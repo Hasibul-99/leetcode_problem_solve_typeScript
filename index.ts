@@ -1,26 +1,24 @@
-function groupAnagrams(strs: string[]): string[][] {
-    
-    const map: Map<string, string[]> = new Map();
+function topKFrequent(nums: number[], k: number): number[] {
+    const res: number[] = [];
+    let obj: any = {};
 
-    for (const str of strs) {
-        // const sorted = [...str].sort().join('');
-        // if (map.has(sorted)) {
-        //     map.get(sorted)!.push(str);
-        // } else {
-        //     map.set(sorted, [str]);
-        // }
-
-        const key = str.split('').sort().join('');
-        if (map.has(key)) {
-            map.get(key)!.push(str);
+    for (let i = 0; i < nums.length; i++) {
+        if (obj[nums[i]]) {
+            obj[nums[i]] += 1;
         } else {
-            map.set(key, [str]);
+            obj[nums[i]] = 1;
         }
-
     }
 
-    return Array.from(map.values());
+    const sorted = Object.entries(obj).sort((a: any, b: any) => b[1] - a[1]);
+
+    for (let i = 0; i < k; i++) {
+        res.push(Number(sorted[i][0]));
+    }
+
+    return res;
+    
 };
 
-console.log("containsDuplicate", groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
+console.log("containsDuplicate", topKFrequent([1,2,1,2,1,2,3,1,3,2], 2));
 
